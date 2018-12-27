@@ -1,0 +1,21 @@
+footer
+{
+	display: flex;
+	justify-content: space-between;
+	margin: 2rem 0;
+}
+footer pre
+{
+	color: #626a7a;
+}
+@media (max-width: 58rem)
+{
+	footer
+	{
+		justify-content: center;
+	}
+	footer pre:last-child
+	{
+		display: none;
+	}
+}

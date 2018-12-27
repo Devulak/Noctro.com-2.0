@@ -1,0 +1,142 @@
+.gameLottery
+{
+	display: flex;
+	margin: -.5rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 1.5rem;
+}
+
+.gameLottery .brick
+{
+	flex: 1;
+	min-width: 24rem;
+	background-color: #36393f;
+	border-radius: 5px;
+	margin: .5rem;
+	padding: 2rem;
+	border: 1px solid transparent;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.gameLottery .brick .sub
+{
+	font-size: .875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	opacity: .25;
+}
+
+.gameLottery .brick .enlarge
+{
+	font-size: 3rem;
+	font-weight: 300;
+}
+
+.gameLottery .brick .alt
+{
+	opacity: .5;
+	font-size: .8em;
+}
+
+.gameLottery .brick .spinList
+{
+	margin: 0rem 0 2rem;
+	position: relative;
+	height: 2rem;
+}
+
+.gameLottery .brick .spinList .game
+{
+	font-size: 1.5rem;
+	font-weight: 300;
+	line-height: 2rem;
+	transition: opacity .2s, top .2s;
+	opacity: 0;
+}
+.gameLottery .brick .spinList .game.absolute
+{
+	position: absolute;
+	top: -100%;
+	left: 0;
+	right: 0;
+}
+.gameLottery .brick .spinList .game.in
+{
+	opacity: 1;
+	top: 0;
+}
+.gameLottery .brick .spinList .game.out
+{
+	opacity: 0;
+	top: 100%;
+}
+
+.gameLottery .brick .spin
+{
+	border-radius: 3px;
+	line-height: 1.5rem;
+	font-weight: 600;
+	padding: .8rem;
+	text-align: center;
+	border: none;
+	display: block;
+	text-decoration: none;
+	width: 100%;
+
+	background-color: #2f3136;
+	color: #36393f;
+	font: inherit;
+	font-weight: 600;
+}
+.gameLottery .brick .spin.available
+{
+	background-color: #33CC66;
+	cursor: pointer;
+	color: inherit;
+}
+
+
+
+.gameWon
+{
+	background-color: #36393f;
+	border-radius: .3125rem;
+	padding: 2rem;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+	margin-bottom: 2rem;
+}
+
+.gameWon .container
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+.gameWon .container h2
+{
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin: 0;
+}
+
+.gameWon .container .code
+{
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin-left: 2rem;
+}
+
+.gameWon .infobar
+{
+	margin-top: .25rem;
+	line-height: 1rem;
+	font-size: .75rem;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .4);
+}

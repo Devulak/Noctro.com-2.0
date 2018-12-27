@@ -1,0 +1,125 @@
+/* Fonts */
+@font-face
+{
+	font-family: Open Sans;
+	font-weight: 300;
+	src: url(../fonts/OpenSans/OpenSans-Light.ttf);
+}
+@font-face
+{
+	font-family: Open Sans;
+	src: url(../fonts/OpenSans/OpenSans-Regular.ttf);
+}
+@font-face
+{
+	font-family: Open Sans;
+	font-weight: 600;
+	src: url(../fonts/OpenSans/OpenSans-Semibold.ttf);
+}
+@font-face
+{
+	font-family: Open Sans;
+	font-weight: 700;
+	src: url(../fonts/OpenSans/OpenSans-Bold.ttf);
+}
+@font-face
+{
+	font-family: Open Sans;
+	font-weight: 800;
+	src: url(../fonts/OpenSans/OpenSans-ExtraBold.ttf);
+}
+
+
+/* Init */
+*
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body
+{
+	margin: 0;
+	font-family: Open Sans, Helvetica, Arial, sans-serif;
+	background-color: #2f3136;
+	color: white;
+	/*text-shadow: 0 1px rgba(0, 0, 0, .5);*/
+}
+a
+{
+	text-decoration: none;
+	color: #33cc66;
+	transition: color .2s;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+pre
+{
+	margin: 0;
+	font-family: inherit;
+}
+h1
+{
+	font-size: 2rem;
+	font-weight: 300;
+	text-align: center;
+	margin: 4rem 0 2rem;
+}
+.widthLimit
+{
+	max-width: 96rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Wait */
+.wait
+{
+	position: relative;
+	pointer-events: none;
+}
+@keyframes wait
+{
+	from
+	{
+		transform: rotate(0deg);
+	}
+	to
+	{
+		transform: rotate(360deg);
+	}
+}
+.wait:after
+{
+	content: "";
+	animation-name: wait;
+	animation-duration: .5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	width: 2rem;
+	height: 2rem;
+	margin: auto;
+	background-image: url(../images/wait.svg);
+	background-size: 2rem 2rem;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.wait:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-color: rgba(54, 57, 63, .5);
+}

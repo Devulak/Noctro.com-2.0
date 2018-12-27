@@ -1,0 +1,44 @@
+.inputstyle,
+.buttonstyle
+{
+	display: block;
+	width: 100%;
+	border-radius: 3px;
+	font-size: inherit;
+	font-family: inherit;
+	padding: .8rem;
+	background-color: #2f3136;
+	color: inherit;
+	line-height: 1.5rem;
+	font-weight: 600;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0);
+	transition: border .2s;
+}
+.inputstyle:hover
+{
+	border: 1px solid rgba(51, 204, 102, .5);
+}
+.inputstyle:focus
+{
+	border: 1px solid #33CC66;
+}
+
+.buttonstyle
+{
+	cursor: pointer;
+	margin: 0;
+	background-color: #33CC66;
+	opacity: 1;
+	transition: opacity .2s;
+}
+.buttonstyle:hover,
+.buttonstyle:focus
+{
+	text-decoration: none;
+	opacity: .8;
+}
+.buttonstyle:active
+{
+	opacity: 1;
+}

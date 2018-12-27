@@ -9,9 +9,11 @@ use Domain\Profile;
 class ProfileAccessor extends Connection implements IProfileAccessor
 {
 
-    function GetProfileByToken(string $token): Profile
+    function GetProfileByToken(string $token): ?Profile
     {
         $con = self::GetConnection();
+
+        $token = $con->real_escape_string($token);
 
         $results = $con->query("
             SELECT
@@ -20,11 +22,19 @@ class ProfileAccessor extends Connection implements IProfileAccessor
                 `hash`,
                 `token`
             FROM `user_users`
+			WHERE `token` = '$token'
         ");
 
-        $result = $results->fetch_object("Profile");
-        
-        return $result;
+        if ($results->num_rows > 0)
+		{
+			$result = $results->fetch_object();
+
+			return new Profile($this, $result->id, $result->email, $result->hash, $result->token);
+		}
+        else
+        {
+        	return null;
+		}
     }
 
     function  CreateProfile(string $email, string $hash): Profile
@@ -33,7 +43,7 @@ class ProfileAccessor extends Connection implements IProfileAccessor
         // TODO: Implement  CreateProfile() method.
     }
 
-    function GetProfileByEmail(string $email): Profile
+    function GetProfileByEmail(string $email): ?Profile
     {
         throw new NotImplementedException();
         // TODO: Implement GetProfileByEmail() method.

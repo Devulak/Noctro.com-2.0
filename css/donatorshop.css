@@ -1,0 +1,64 @@
+.shop
+{
+	max-width: 96rem;
+	margin: 0 auto;
+}
+.shop .items
+{
+	display: flex;
+	margin: -.5rem;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.shop .items .item
+{
+	min-width: 24rem;
+	background-color: #36393f;
+	border-radius: 5px;
+	margin: .5rem;
+	padding: 2rem;
+	border: 1px solid transparent;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+}
+.shop .items .item h2
+{
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 300;
+	text-align: center;
+	margin: 0 0 .5rem;
+}
+.shop .items .item sub
+{
+	text-align: center;
+	display: block;
+	margin-top: .25rem;
+	line-height: 1rem;
+	font-size: .75rem;
+	color: rgba(255, 255, 255, .4);
+}
+.shop .items .item .option
+{
+	border-radius: 3px;
+	background-color: #2f3136;
+	line-height: 1.5rem;
+	font-weight: 600;
+	padding: .8rem;
+	text-align: center;
+	border: none;
+	display: block;
+	width: 100%;
+
+	color: inherit;
+	font: inherit;
+	font-weight: 600;
+}
+.shop .items .item .option.buy
+{
+	background-color: #33CC66;
+	cursor: pointer;
+}
+.shop .items .item.own
+{
+	border-color: #33CC66;
+}

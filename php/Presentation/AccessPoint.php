@@ -13,13 +13,17 @@ class AccessPoint
     {
         if(!self::$profile)
         {
-            if($_COOKIE["token"] != null)
+            if (isset($_COOKIE["token"]))
             {
                 $_SESSION["token"] = $_COOKIE["token"];
             }
-            if($_SESSION["token"] != null)
+            if (isset($_SESSION["token"]))
             {
 				self::$profile = Profile::GetByToken($ac, $_SESSION['token']);
+				if (self::$profile != null)
+				{
+					self::login(self::$profile);
+				}
             }
         }
         return self::$profile;

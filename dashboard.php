@@ -8,9 +8,7 @@ $profile = \Presentation\AccessPoint::GetProfile($pa);
 
 if ($profile == null)
 {
-    echo "Not logged in";
-}
-else
-{
-	echo "Logged in";
+	// TODO: Remove ".php" in production
+	header("Location: login.php");
+	die;
 }

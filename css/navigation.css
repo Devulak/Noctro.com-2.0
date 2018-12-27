@@ -1,0 +1,108 @@
+nav
+{
+	margin: .5rem 0 2rem;
+	display: flex;
+	align-items: center;
+}
+nav > *
+{
+	margin: 0 1rem;
+}
+nav > .spread
+{
+	flex: 1;
+}
+
+nav .logo
+{
+	margin-left: .5rem;
+}
+
+nav .logo img
+{
+	height: 3rem;
+	display: block;
+}
+
+nav .logout
+{
+	margin-right: 0;
+	padding: .5rem 2rem;
+	line-height: 2rem;
+
+	border-radius: 2rem 0 0 2rem;
+	background-color: #36393f;
+	text-decoration: none;
+	transition: box-shadow .2s;
+}
+nav .logout:hover
+{
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+}
+
+nav .balance
+{
+	font-weight: 600;
+}
+nav .balance span.small
+{
+	font-weight: 400;
+	font-size: .8em;
+}
+nav .balance span.alt
+{
+	font-weight: 400;
+	opacity: .5;
+}
+
+nav .donate
+{
+	text-decoration: none;
+	transition: box-shadow .2s;
+	display: flex;
+	align-items: stretch;
+	position: relative;
+}
+nav .donate:after
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	border: 3px solid #33CC66;
+	border-radius: 3px;
+	pointer-events: none;
+}
+nav .donate .valuta
+{
+	padding: 0 .5rem 0 1rem;
+	line-height: 3rem;
+	font-weight: 600;
+	background-color: #2f3136;
+}
+nav .donate input
+{
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+}
+nav .donate input[type=text]
+{
+	font-weight: 600;
+	width: 10rem;
+	padding-right: 1rem;
+	background-color: #2f3136;
+}
+nav .donate input[type=submit]
+{
+	background-color: #33CC66;
+	padding: .5rem 2rem;
+	cursor: pointer;
+	border-radius: 3px;
+}

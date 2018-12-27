@@ -24,9 +24,9 @@ class Profile
         return $ac-> CreateProfile($email, $hash);
     }
 
-    public static function GetByToken(IProfileAccessor $ac, string $token): Profile
+    public static function GetByToken(IProfileAccessor $ac, string $token): ?Profile
     {
-        return $ac->GetProfileByEmail($token);
+        return $ac->GetProfileByToken($token);
     }
 
     public static function IsEmailAvailable(IProfileAccessor $ac, string $email): bool

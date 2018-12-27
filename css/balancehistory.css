@@ -1,0 +1,76 @@
+.balanceHistory
+{
+	position: relative;
+}
+.balanceHistory:before
+{
+	content: "";
+	background-color: #36393f;
+	width: .3125rem;
+	position: absolute;
+	top: 2.8125rem;
+	left: -2.34375rem;
+	bottom: 4.5rem;
+}
+.balanceHistory .shrug
+{
+	font-size: 2rem;
+	font-weight: 700;
+	text-align: center;
+	color: #36393f;
+	margin: 2rem 0;
+}
+.balanceHistory .balanceMark
+{
+	background-color: #36393f;
+	border-radius: .3125rem;
+	padding: 2rem;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+	margin-bottom: 2rem;
+	position: relative;
+	/*margin-left: 2rem;*/
+}
+.balanceHistory .balanceMark:before
+{
+	content: "";
+	background-color: #33cc66;
+	width: .625rem; /* .625rem */
+	height: .625rem;
+	border-radius: 1rem;
+	position: absolute;
+	top: 2.5rem;
+	left: -2.5rem;
+}
+.balanceHistory .balanceMark.remove:before
+{
+	background-color: #cc3366;
+}
+.balanceHistory .balanceMark h2
+{
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin: 0;
+}
+.balanceHistory .balanceMark .infobar
+{
+	margin-top: .25rem;
+	line-height: 1rem;
+	font-size: .75rem;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, .4);
+}
+.balanceHistory .balanceMark .extra
+{
+	position: absolute;
+	top: 2rem;
+	bottom: 2rem;
+	right: 2rem;
+
+	padding: .5rem 2rem;
+	line-height: 2rem;
+	height: 3rem;
+	margin: auto;
+
+	border-radius: 2rem;
+	background-color: #2f3136;
+}

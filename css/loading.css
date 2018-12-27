@@ -1,0 +1,37 @@
+header
+{
+	display: table;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+header:before
+{
+	opacity: .9;
+}
+header .container
+{
+	padding: 0;
+	display: table-cell;
+	vertical-align: middle;
+}
+header h3
+{
+	opacity: .9;
+	margin-top: 1rem;
+}
+header h3:first-child
+{
+	margin: 0;
+}
+header .description
+{
+	opacity: .9;
+	margin-bottom: 1rem;
+}
+header .description:last-child
+{
+	margin: 0;
+}

@@ -1,0 +1,29 @@
+.links
+{
+	text-align: center;
+	margin: 1rem 0;
+}
+.steamLinking
+{
+	display: inline-block;
+	border-radius: 3px;
+	padding: .8rem;
+	background-color: #2f3136;
+	color: inherit;
+	line-height: 1.5rem;
+	font-weight: 600;
+	background-color: #33CC66;
+	opacity: .8;
+	transition: opacity .2s;
+	text-align: center;
+}
+.steamLinking:hover,
+.steamLinking:focus
+{
+	opacity: 1;
+	text-decoration: none;
+}
+.steamLinking:active
+{
+	opacity: .8;
+}
