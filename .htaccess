@@ -1,0 +1,46 @@
+RewriteEngine On
+
+
+
+# adds https and www
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+
+# Login redirect
+RewriteRule ^login$ /login.php [L]
+RewriteRule ^register$ /register.php [L]
+RewriteRule ^dashboard$ /dashboard.php [L]
+RewriteRule ^lost$ /lost.php [L]
+
+# User redirect
+RewriteRule ^user/(.*)$ /user.php?username=$1 [L]
+
+# Discussions redirect
+RewriteRule ^discussion/add$ /discussion_add.php [L]
+RewriteRule ^discussion/(.*)$ /discussion.php?id=$1 [L]
+RewriteRule ^discussions$ /discussions.php [L]
+
+# Leaderboard redirect
+RewriteRule ^leaderboards$ /leaderboards.php [L]
+
+# Donate redirect
+RewriteRule ^donate$ /donate.php [L]
+
+# Terms redirect
+RewriteRule ^terms$ /terms.php [L]
+
+# Settings redirect
+RewriteRule ^settings$ /settings.php [L]
+
+# Loading redirect
+RewriteRule ^loading/(.*)$ /loading.php?subject=$1 [L]
+
+
+
+# Error redirect
+ErrorDocument 404 /error.php
+ErrorDocument 403 /error.php
