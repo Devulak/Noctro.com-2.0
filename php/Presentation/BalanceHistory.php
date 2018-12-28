@@ -1,59 +1,68 @@
 <?php
 
 namespace Presentation;
-	class BalanceHistory extends XMLSnip
+
+use Domain\Profile;
+use Domain\Shop;
+use Domain\Transaction;
+use persistence\Accessor;
+use SimpleXMLElement;
+
+class BalanceHistory extends XMLSnip
+{
+	public function __construct(Profile $profile)
 	{
-		public function BalanceHistory($profile = Profile)
+		LinkCollector::addLink("balancehistory");
+
+		$shop = new Shop(new Accessor(), $profile);
+
+		$transactions = $shop->GetAllTransactions();
+
+		$xmlTransactions = "";
+
+		/** @var Transaction $transaction */
+		foreach ($transactions as $transaction)
 		{
-			LinkCollector::addLink("balancehistory");
-
-			$transactions = $profile->GetAllTransactions();
-			$transactions = array_reverse($transactions);
-
-			$xmlTransactions = "";
-			foreach ($transactions as $transaction)
+			$extra = "";
+			if ($transaction->GetProduct() != null)
 			{
-				$extra = "";
-				if ($transaction->product)
-				{
-					$extra = "<div class='extra'>" . $transaction->product . "</div>";
-				}
+				$extra = "<div class='extra'>" . $transaction->GetProduct()->GetTitle() . "</div>";
+			}
 
-				$token = "";
-				if ($transaction->token)
-				{
-					$token = " | " . $transaction->token;
-				}
+			$token = "";
+			if ($transaction->GetToken() != null)
+			{
+				$token = " | " . $transaction->GetToken();
+			}
 
-				$xmlTransactions .= "
-					<div class='balanceMark " . ($transaction->amount < 0 ? "remove" : "") . "'>
-						<h2>€ " . number_format($transaction->amount / 100, 2) . "</h2>
-						<div class='infobar'>
-							" . date('m/d/Y H:i:s', $transaction->time) . "
-							" . $token . "
-						</div>
-						" . $extra . "
+			$xmlTransactions .= "
+				<div class='balanceMark " . ($transaction->GetAmount() < 0 ? "remove" : "") . "'>
+					<h2>€ " . number_format($transaction->GetAmount() / 100, 2) . "</h2>
+					<div class='infobar'>
+						" . date('m/d/Y H:i:s', $transaction->GetTime()) . "
+						" . $token . "
 					</div>
-				";
-			}
-			if (!count($transactions))
-			{
-				$xmlTransactions = "<div class='shrug'>¯\_(ツ)_/¯</div>";
-			}
-
-			$xml = "
-				<div class='balanceHistory widthLimit'>
-					" . $xmlTransactions . "
+					" . $extra . "
 				</div>
 			";
-
-			$this->xml = new SimpleXMLElement($xml);
-			$this->AddAllTransactions();
 		}
-
-		private function AddAllTransactions()
+		if (!count($transactions))
 		{
-
+			$xmlTransactions = "<div class='shrug'>¯\_(ツ)_/¯</div>";
 		}
+
+		$xml = "
+			<div class='balanceHistory widthLimit'>
+				" . $xmlTransactions . "
+			</div>
+		";
+
+		$this->xml = new SimpleXMLElement($xml);
+		$this->AddAllTransactions();
 	}
-?>
+
+	private function AddAllTransactions()
+	{
+
+	}
+}

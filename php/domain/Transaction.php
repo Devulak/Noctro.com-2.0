@@ -12,7 +12,7 @@ class Transaction
     private $profile;
     private $product;
 
-    public function __construct(IAccessor $ac, int $id, int $time, int $amount, int $token, int $profile, int $product = null)
+    public function __construct(IAccessor $ac, int $id, int $time, int $amount, int $profile, ?int $token = null, ?int $product = null)
     {
         $this->ac = $ac;
         $this->id = $id;
@@ -23,8 +23,27 @@ class Transaction
         $this->product = $product;
     }
 
-    public function GetAmount(): int
-    {
-        return $this->amount;
-    }
+	public function GetAmount(): int
+	{
+		return $this->amount;
+	}
+
+	public function GetProduct(): ?Product
+	{
+		if ($this->product != null)
+		{
+			return $this->ac->GetProductById($this->product);
+		}
+		return null;
+	}
+
+	public function GetToken(): ?string
+	{
+		return $this->token;
+	}
+
+	public function GetTime(): ?string
+	{
+		return $this->time;
+	}
 }

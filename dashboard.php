@@ -28,21 +28,21 @@ $doc->appendXMLSnip($nav);
 
 /*$doc->appendXML("<h1>Link your accounts</h1>");
 $link = new \Presentation\LinkAccount($profile);
-$doc->appendXML($link->getXML());
+$doc->appendXML($link->getXML());*/
 
 $doc->appendXML("<h1>Donation shop</h1>");
 $donatorShop = new \Presentation\DonatorShop($profile);
 $doc->appendXML($donatorShop->getXML());
 
-$doc->appendXML("<h1>Game lottery</h1>");
+/*$doc->appendXML("<h1>Game lottery</h1>");
 $gameLottery = new \Presentation\GameLottery($profile);
-$doc->appendXML($gameLottery->getXML());
+$doc->appendXML($gameLottery->getXML());*/
 
 $doc->appendXML("<h1>Account purchase history</h1>");
 $balanceHistory = new \Presentation\BalanceHistory($profile);
 $doc->appendXML($balanceHistory->getXML());
 
 $bottom = new \Presentation\Bottom();
-$doc->appendXMLSnip($bottom);*/
+$doc->appendXMLSnip($bottom);
 
 $doc->Print();

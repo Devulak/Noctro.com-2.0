@@ -15,11 +15,22 @@ class Shop
 
     public function IsOwned(Product $product): bool
     {
-        if ($this->ac->GetTransactionByProfileAndProduct($this->profile, $product) == null)
-        {
-            return false;
-        }
-        return true;
+		if ($this->ac->GetTransactionByProfileAndProduct($this->profile, $product) != null)
+		{
+			return true;
+		}
+
+    	$productsInherited = $this->ac->GetAllInheritProductFromProduct($product);
+
+		/** @var Product $productInherited */
+		foreach	($productsInherited as $productInherited)
+		{
+			if ($this->IsOwned($productInherited))
+			{
+				return true;
+			}
+		}
+        return false;
     }
 
     public function Donated(): int
@@ -28,7 +39,8 @@ class Shop
 
         $total = 0;
 
-        foreach ($transactions as $transaction)
+		/** @var Transaction $transaction */
+		foreach ($transactions as $transaction)
         {
             if ($transaction->GetAmount() > 0)
             {
@@ -45,6 +57,7 @@ class Shop
 
         $total = 0;
 
+		/** @var Transaction $transaction */
         foreach ($transactions as $transaction)
         {
             $total += $transaction->GetAmount();
@@ -53,9 +66,23 @@ class Shop
         return $total;
     }
 
-    public function Price(Product $product): int
+    public function GetPrice(Product $product): int
     {
-        return $product->GetPrice();
+    	/*if ($product->GetInherited() == null)
+		{
+			return $product->GetDefaultPrice() * .9;
+		}*/
+
+    	$inheritProduct = $product->GetInherited();
+    	while ($inheritProduct != null)
+		{
+			if ($this->IsOwned($inheritProduct))
+			{
+				return $product->GetDefaultPrice() - $inheritProduct->GetDefaultPrice();
+			}
+			$inheritProduct = $inheritProduct->GetInherited();
+		}
+		return $product->GetDefaultPrice();
     }
 
     public function PersonalPrice(Product $product): int

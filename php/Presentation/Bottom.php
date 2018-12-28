@@ -2,6 +2,8 @@
 
 namespace Presentation;
 
+use SimpleXMLElement;
+
 class Bottom extends XMLSnip
 {
 	function __construct()
@@ -11,6 +13,6 @@ class Bottom extends XMLSnip
 		$this->xml = new SimpleXMLElement("<div />");
 		$this->xml->addAttribute("class", "bottom");
 		$image = $this->xml->addChild("img");
-		$image->addAttribute("src", Config::GetPath() . "images/kelvin.svg");
+		$image->addAttribute("src", "images/kelvin.svg");
 	}
 }

@@ -2,12 +2,19 @@
 
 namespace Presentation;
 
+use Domain\Product;
+use Domain\Profile;
+use Domain\Shop;
+use persistence\Accessor;
+use Persistence\Config;
+use SimpleXMLElement;
+
 class DonatorShop extends XMLSnip
 {
     private $xmlItems;
     private $profile;
 
-    public function DonatorShop($profile = Profile)
+    public function __construct(Profile $profile)
     {
         $this->profile = $profile;
 
@@ -30,23 +37,25 @@ class DonatorShop extends XMLSnip
 
     private function AddAllProducts()
     {
-        $sa = new ShopAccessor();
-        $results = $sa->GetAllItems($this->profile->getId());
+        $sa = new Accessor();
+        $products = $sa->GetAllProducts();
 
-        while ($result = $results->fetch_object())
-        {
-            $this->AddProduct($result->id, $result->price, $result->info, $result->title, $result->own);
-        }
+        foreach ($products as $product)
+		{
+			$this->AddProduct($product);
+		}
     }
 
-    private function AddProduct($id, $price, $info, $title, $own)
+    private function AddProduct(Product $product)
     {
+    	$shop = new Shop(new Accessor(), $this->profile);
+
         $item = $this->xmlItems->addChild("div");
 
-        $item->addChild("sub", $info);
-        $item->addChild("h2", $title);
+        $item->addChild("sub", $product->GetInfo());
+        $item->addChild("h2", $product->GetTitle());
 
-        if ($own)
+        if ($shop->IsOwned($product))
         {
             $item->addAttribute("class", "item own");
 
@@ -58,7 +67,7 @@ class DonatorShop extends XMLSnip
             $item->addAttribute("class", "item");
 
             $form = $item->addChild("form");
-            $form->addAttribute("action", Config::GetPath() . "/php/ajax/purchase.php");
+            $form->addAttribute("action", "php/ajax/purchase.php");
             $form->addAttribute("method", "post");
             $form->addAttribute("class", "donate payment");
 
@@ -70,32 +79,40 @@ class DonatorShop extends XMLSnip
             $email = $form->addChild("input");
             $email->addAttribute("type", "hidden");
             $email->addAttribute("name", "email");
-            $email->addAttribute("value", $this->profile->getEmail());
+            $email->addAttribute("value", $this->profile->GetEmail());
 
             $formTitle = $form->addChild("input");
             $formTitle->addAttribute("type", "hidden");
             $formTitle->addAttribute("name", "title");
-            $formTitle->addAttribute("value", $title);
+            $formTitle->addAttribute("value", $product->GetTitle());
 
             $description = $form->addChild("input");
             $description->addAttribute("type", "hidden");
             $description->addAttribute("name", "description");
-            $description->addAttribute("value", $info);
+            $description->addAttribute("value", $product->GetInfo());
 
             $amount = $form->addChild("input");
             $amount->addAttribute("type", "hidden");
             $amount->addAttribute("name", "amount");
-            $amount->addAttribute("value", $price - $this->profile->getBalance());
+            $amount->addAttribute("value", $shop->GetPrice($product) - $shop->Balance());
 
-            $product = $form->addChild("input");
-            $product->addAttribute("type", "hidden");
-            $product->addAttribute("name", "product");
-            $product->addAttribute("value", $id);
+            $productInput = $form->addChild("input");
+			$productInput->addAttribute("type", "hidden");
+			$productInput->addAttribute("name", "product");
+			$productInput->addAttribute("value", $product->GetId());
 
             $submit = $form->addChild("input");
             $submit->addAttribute("type", "submit");
             $submit->addAttribute("class", "option buy");
-            $submit->addAttribute("value", "€ " . number_format($price / 100, 2));
+
+            if ($shop->GetPrice($product) != $product->GetDefaultPrice())
+			{
+				$submit->addAttribute("value", "€ " . number_format($shop->GetPrice($product) / 100, 2) . " (Before: € " . number_format($product->GetDefaultPrice() / 100, 2) . ")");
+			}
+            else
+			{
+				$submit->addAttribute("value", "€ " . number_format($product->GetDefaultPrice() / 100, 2));
+			}
         }
     }
 }

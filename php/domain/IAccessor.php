@@ -4,9 +4,15 @@ namespace Domain;
 
 interface IAccessor
 {
-    function GetGameServerById(int $id): ?GameServer;
+	public function GetGameServerById(int $id): ?GameServer;
 
-    function GetTransactionByProfileAndProduct(Profile $profile, Product $product): ?GameServer;
+	public function GetTransactionByProfileAndProduct(Profile $profile, Product $product): ?Transaction;
 
-    function GetTransactionsByProfile(Profile $profile): array;
+    public function GetTransactionsByProfile(Profile $profile): array;
+
+	public function GetProductById(?int $id): ?Product;
+
+	public function GetAllProducts(): array;
+
+	public function GetAllInheritProductFromProduct(Product $product): array;
 }
