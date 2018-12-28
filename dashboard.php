@@ -34,9 +34,9 @@ $doc->appendXML("<h1>Donation shop</h1>");
 $donatorShop = new \Presentation\DonatorShop($profile);
 $doc->appendXML($donatorShop->getXML());
 
-/*$doc->appendXML("<h1>Game lottery</h1>");
+$doc->appendXML("<h1>Game lottery</h1>");
 $gameLottery = new \Presentation\GameLottery($profile);
-$doc->appendXML($gameLottery->getXML());*/
+$doc->appendXML($gameLottery->getXML());
 
 $doc->appendXML("<h1>Account purchase history</h1>");
 $balanceHistory = new \Presentation\BalanceHistory($profile);

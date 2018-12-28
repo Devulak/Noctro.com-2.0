@@ -13,14 +13,14 @@ class Shop
         $this->profile = $profile;
     }
 
-    public function IsOwned(Product $product): bool
-    {
+	public function IsOwned(Product $product): bool
+	{
 		if ($this->ac->GetTransactionByProfileAndProduct($this->profile, $product) != null)
 		{
 			return true;
 		}
 
-    	$productsInherited = $this->ac->GetAllInheritProductFromProduct($product);
+		$productsInherited = $this->ac->GetAllInheritProductFromProduct($product);
 
 		/** @var Product $productInherited */
 		foreach	($productsInherited as $productInherited)
@@ -30,10 +30,10 @@ class Shop
 				return true;
 			}
 		}
-        return false;
-    }
+		return false;
+	}
 
-    public function Donated(): int
+    public function GetDonated(): int
     {
         $transactions = $this->ac->GetTransactionsByProfile($this->profile);
 
@@ -51,7 +51,7 @@ class Shop
         return $total;
     }
 
-    public function Balance(): int
+    public function GetBalance(): int
     {
         $transactions = $this->ac->GetTransactionsByProfile($this->profile);
 
@@ -68,21 +68,32 @@ class Shop
 
     public function GetPrice(Product $product): int
     {
-    	/*if ($product->GetInherited() == null)
+    	// TODO: Get all inherited products and deduct the corresponding transactions from the price of this product
+    	if ($product->GetInherited() == null) // Sets the price of all the first ones a bit down
 		{
-			return $product->GetDefaultPrice() * .9;
-		}*/
+			return $product->GetDefaultPrice() * .5;
+		}
+
+    	$price = $product->GetDefaultPrice();
 
     	$inheritProduct = $product->GetInherited();
     	while ($inheritProduct != null)
 		{
 			if ($this->IsOwned($inheritProduct))
 			{
-				return $product->GetDefaultPrice() - $inheritProduct->GetDefaultPrice();
+				$transaction = $this->ac->GetTransactionByProfileAndProduct($this->profile, $inheritProduct);
+				if ($transaction != null)
+				{
+					$price += $transaction->GetAmount();
+				}
 			}
 			$inheritProduct = $inheritProduct->GetInherited();
 		}
-		return $product->GetDefaultPrice();
+
+
+
+		// Default return
+		return $price;
     }
 
     public function PersonalPrice(Product $product): int

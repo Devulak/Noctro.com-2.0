@@ -94,7 +94,7 @@ class DonatorShop extends XMLSnip
             $amount = $form->addChild("input");
             $amount->addAttribute("type", "hidden");
             $amount->addAttribute("name", "amount");
-            $amount->addAttribute("value", $shop->GetPrice($product) - $shop->Balance());
+            $amount->addAttribute("value", $shop->GetPrice($product) - $shop->GetBalance());
 
             $productInput = $form->addChild("input");
 			$productInput->addAttribute("type", "hidden");

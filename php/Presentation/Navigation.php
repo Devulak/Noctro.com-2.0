@@ -18,9 +18,9 @@ class Navigation extends XMLSnip
 
 		$shop = new Shop(new Accessor(), $profile);
 
-		list($balanceInt, $balanceDecimal) = sscanf($shop->Balance() / 100, '%d.%d');
+		list($balanceInt, $balanceDecimal) = sscanf($shop->GetBalance() / 100, '%d.%d');
 
-		list($donatedInt, $donatedDecimal) = sscanf($shop->Donated() / 100, '%d.%d');
+		list($donatedInt, $donatedDecimal) = sscanf($shop->GetDonated() / 100, '%d.%d');
 
 		$xml = "
 			<nav>

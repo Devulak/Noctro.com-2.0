@@ -2,6 +2,7 @@
 
 namespace persistence;
 
+use domain\GameCode;
 use Domain\GameServer;
 use Domain\IAccessor;
 use Domain\NotImplementedException;
@@ -156,5 +157,57 @@ class Accessor extends Connection implements IAccessor
 		}
 
 		return $products;
+	}
+
+	public function GetUnclaimedGameCodes(): array
+	{
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `subject` as title,
+                `code`,
+                `user` as profile,
+            	`time`
+            FROM `token_game`
+			WHERE `user` IS NULL
+        ");
+
+		$gameCodes = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$gameCodes[] = new GameCode($result->id, $result->title, $result->code, $result->profile, $result->time);
+		}
+
+		return $gameCodes;
+	}
+
+	public function GetClaimedGameCodes(Profile $profile): array
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `subject` as title,
+                `code`,
+                `user` as profile,
+            	`time`
+            FROM `token_game`
+			WHERE `user` = '$profileId'
+        ");
+
+		$gameCodes = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$gameCodes[] = new GameCode($result->id, $result->title, $result->code, $result->profile, $result->time);
+		}
+
+		return $gameCodes;
 	}
 }

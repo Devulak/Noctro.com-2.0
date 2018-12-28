@@ -15,4 +15,8 @@ interface IAccessor
 	public function GetAllProducts(): array;
 
 	public function GetAllInheritProductFromProduct(Product $product): array;
+
+	public function GetUnclaimedGameCodes(): array;
+
+	public function GetClaimedGameCodes(Profile $profile): array;
 }
