@@ -8,7 +8,7 @@
 
 	$doc = new Page();
 
-	$doc->setTitle('Login');
+	$doc->setTitle('Lost password');
 
 	$doc->appendXML('
 		<canvas id="background" />
@@ -17,15 +17,14 @@
 		</script>
 	');
 
-	$form = new Form("user_login");
+	$form = new Form("user_lost");
 	
-	$form->addTitle("Welcome");
-	$form->addDescription("How's it going?");
+	$form->addTitle("Lost password");
+	$form->addDescription("Don't worry, we got your back!");
 	$form->addInput("Email", "email", "email");
-	$form->addInput("Password", "password", "password");
-	$form->addSub("Lost your password? <a href=\"/lost\">Find it!</a>");
-	$form->addSubmit("Login");
-	$form->addSub("Need an account? <a href=\"/register\">Register</a>");
+	$form->addSub("We'll send you a little retriever");
+	$form->addSubmit("Send", "submit");
+	$form->addSub("Remembered it anyway? <a href=\"/login\">Login</a>");
 
 
 	$doc->appendXML($form->getXML());

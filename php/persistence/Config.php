@@ -36,19 +36,16 @@ class Config
         return self::$config['recaptcha'];
     }
 
+	public static function GetPath(): string
+	{
+		return self::GetInit()["path"];
+	}
+
     private static function GetConfig()
     {
         if (!self::$config)
         {
 			self::$config = parse_ini_file(__DIR__ . '/../../../config.ini', true);
         }
-    }
-
-    public static function GetPath()
-    {
-        // TODO: fix this mess
-        $path = __DIR__;
-        $path = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path);
-        return preg_replace('/(.*)\/php\/classes\/persistence/', '$1', $path);
     }
 }

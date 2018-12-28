@@ -8,7 +8,7 @@
 
 	$doc = new Page();
 
-	$doc->setTitle('Login');
+	$doc->setTitle('Register');
 
 	$doc->appendXML('
 		<canvas id="background" />
@@ -17,15 +17,15 @@
 		</script>
 	');
 
-	$form = new Form("user_login");
+	$form = new Form("user_register");
 	
-	$form->addTitle("Welcome");
-	$form->addDescription("How's it going?");
+	$form->addTitle("Create an account");
 	$form->addInput("Email", "email", "email");
 	$form->addInput("Password", "password", "password");
-	$form->addSub("Lost your password? <a href=\"/lost\">Find it!</a>");
-	$form->addSubmit("Login");
-	$form->addSub("Need an account? <a href=\"/register\">Register</a>");
+	$form->addSubmit("Continue");
+	$config = Config::GetInit();
+	$form->addSub("By continuing you accept to have read and agree to " . $config['name'] . "'s <a href=\"#\">Terms of Service</a> and <a href=\"#\">Privacy Policy</a>");
+	$form->addSub("Already have an account? <a href=\"/login\">Login</a>");
 
 
 	$doc->appendXML($form->getXML());
