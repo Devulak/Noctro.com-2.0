@@ -16,9 +16,25 @@ class MinecraftServer extends GameServer
 		$this->rconPassword = $rconPassword;
 	}
 
-	public function Announce(string $announcement, Profile $profile): void
+	public function Announce(string $announcement, Profile $profile, string $special): void
     {
-        throw new NotImplementedException();
+		$links = $profile->GetAllLinks();
+
+		foreach	($links as $link)
+		{
+			if ($link instanceof MojangLink)
+			{
+				$rcon = new Rcon($this->rconIp, $this->rconPort, $this->rconPassword);
+
+				if ($rcon->connect())
+				{
+					$username = $link->GetUsername();
+
+					$rcon->sendCommand("broadcast &9&l$username&f $announcement &c&l$special&f.");
+					$rcon->disconnect();
+				}
+			}
+		}
     }
 
     public function Activate(Transaction $transaction): void
@@ -28,6 +44,7 @@ class MinecraftServer extends GameServer
 		$product = $transaction->GetProduct();
 
 		$links = $profile->GetAllLinks();
+
 		foreach	($links as $link)
 		{
 			if ($link instanceof MojangLink)
@@ -36,8 +53,13 @@ class MinecraftServer extends GameServer
 
 				if ($rcon->connect())
 				{
-					$rcon->sendCommand("upc setGroups " . $link->GetUsername() . " " . $product->GetTitle());
-					$rcon->sendCommand("broadcast &9&l" . $link->GetUsername() . "&f just purchased &c&l" . $product->GetTitle() . "&f rank!");
+					$username = $link->GetUsername();
+
+					$productTitle = $product->GetTitle();
+
+					$rcon->sendCommand("upc setGroups $username $productTitle");
+					$rcon->sendCommand("broadcast &9&l$username&f just purchased &c&l$productTitle&f rank!");
+					$rcon->disconnect();
 				}
 			}
 		}

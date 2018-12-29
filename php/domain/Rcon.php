@@ -30,7 +30,7 @@ class Rcon
 	 * @param string $password
 	 * @param integer $timeout
 	 */
-	public function __construct($host, $port, $password, $timeout = 3)
+	public function __construct(string $host, int $port, string $password, int $timeout = 3)
 	{
 		$this->host = $host;
 		$this->port = $port;
@@ -96,9 +96,10 @@ class Rcon
 	 *
 	 * @param string $command
 	 *
+	 * @param bool $getResponse
 	 * @return boolean|mixed
 	 */
-	public function sendCommand($command)
+	public function sendCommand($command, bool $getResponse = true)
 	{
 		if (!$this->isConnected()) {
 			return false;
@@ -108,12 +109,15 @@ class Rcon
 		$this->writePacket(self::PACKET_COMMAND, self::SERVERDATA_EXECCOMMAND, $command);
 
 		// get response
-		$response_packet = $this->readPacket();
-		if ($response_packet['id'] == self::PACKET_COMMAND) {
-			if ($response_packet['type'] == self::SERVERDATA_RESPONSE_VALUE) {
-				$this->lastResponse = $response_packet['body'];
+		if ($getResponse)
+		{
+			$response_packet = $this->readPacket();
+			if ($response_packet['id'] == self::PACKET_COMMAND) {
+				if ($response_packet['type'] == self::SERVERDATA_RESPONSE_VALUE) {
+					$this->lastResponse = $response_packet['body'];
 
-				return $response_packet['body'];
+					return $response_packet['body'];
+				}
 			}
 		}
 

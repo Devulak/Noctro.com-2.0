@@ -134,6 +134,14 @@ class Shop
 
 		$this->ac->AddBalance($this->profile, $amount, $token);
 
-		//TODO: Give announcement to all servers
+		// Give announcement to all servers
+		$gameServers = $this->ac->GetAllGameServers();
+
+		/** @var GameServer $gameServer */
+		foreach	($gameServers as $gameServer)
+		{
+			$formatedAmount = number_format($amount / 100, 2);
+			$gameServer->Announce("just donated", $this->profile, "$formatedAmount EUR");
+		}
     }
 }

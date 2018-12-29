@@ -26,7 +26,15 @@ class BalanceHistory extends XMLSnip
 			$extra = "";
 			if ($transaction->GetProduct() != null)
 			{
-				$extra = "<div class='extra'>" . $transaction->GetProduct()->GetTitle() . "</div>";
+				$product = $transaction->GetProduct();
+
+				$productTitle = $product->GetTitle();
+
+				$gameServer = $product->GetGameServer();
+
+				$gameServerTitle = $gameServer->GetTitle();
+
+				$extra = "<div class='extra'>$gameServerTitle - $productTitle</div>";
 			}
 
 			$token = "";

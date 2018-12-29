@@ -27,4 +27,6 @@ interface IAccessor
 	public function CreatePurchase(Profile $profile, Product $product, int $amount): Transaction;
 
 	public function GetProfileById(int $profileId): ?Profile;
+
+	public function GetAllGameServers(): array;
 }

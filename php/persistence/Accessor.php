@@ -13,34 +13,6 @@ use Domain\Transaction;
 
 class Accessor extends Connection implements IAccessor
 {
-	public function GetGameServerById(int $gameServerId): ?GameServer
-	{
-		$con = self::GetConnection();
-
-		$results = $con->query("
-            SELECT
-                `id`,
-                `title`,
-                `rconIp`,
-                `rconPort`,
-                `rconPassword`
-            FROM `GameServer`
-            
-            INNER JOIN MinecraftServer
-            ON MinecraftServer.gameServer = GameServer.id
-            
-			WHERE `id` = '$gameServerId'
-        ");
-
-		if ($results->num_rows > 0)
-		{
-			$result = $results->fetch_object();
-
-			return new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
-		}
-		return null;
-	}
-
 	function GetTransactionByProfileAndProduct(Profile $profile, Product $product): ?Transaction
 	{
 		$con = self::GetConnection();
@@ -310,5 +282,60 @@ class Accessor extends Connection implements IAccessor
 		{
 			return null;
 		}
+	}
+
+	public function GetGameServerById(int $gameServerId): ?GameServer
+	{
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `title`,
+                `rconIp`,
+                `rconPort`,
+                `rconPassword`
+            FROM `GameServer`
+            
+            INNER JOIN MinecraftServer
+            ON MinecraftServer.gameServer = GameServer.id
+            
+			WHERE `id` = '$gameServerId'
+        ");
+
+		if ($results->num_rows > 0)
+		{
+			$result = $results->fetch_object();
+
+			return new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
+		}
+		return null;
+	}
+
+	public function GetAllGameServers(): array
+	{
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `title`,
+                `rconIp`,
+                `rconPort`,
+                `rconPassword`
+            FROM `GameServer`
+            
+            INNER JOIN MinecraftServer
+            ON MinecraftServer.gameServer = GameServer.id
+        ");
+
+		$gameServers = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$gameServers[] = new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
+		}
+
+		return $gameServers;
 	}
 }

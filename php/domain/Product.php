@@ -43,7 +43,7 @@ class Product
 
 	public function GetInfo(): string
 	{
-		return "NOT IMPLEMENTED YET";
+		return $this->GetGameServer()->GetTitle();
 	}
 
 	public function GetInherited(): ?Product

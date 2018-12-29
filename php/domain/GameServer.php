@@ -18,7 +18,12 @@ abstract class GameServer
 		throw new NotImplementedException();
 	}
 
-    public abstract function Announce(string $announcement, Profile $profile): void;
+    public abstract function Announce(string $announcement, Profile $profile, string $special): void;
 
     public abstract function Activate(Transaction $transaction): void;
+
+	public function GetTitle(): string
+	{
+		return $this->title;
+	}
 }
