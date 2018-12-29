@@ -23,4 +23,8 @@ interface IAccessor
 	public function ClaimGameCode(GameCode $gameCode, Profile $profile): void;
 
 	public function AddBalance(Profile $profile, int $amount, string $token): void;
+
+	public function CreatePurchase(Profile $profile, Product $product, int $amount): Transaction;
+
+	public function GetProfileById(int $profileId): ?Profile;
 }

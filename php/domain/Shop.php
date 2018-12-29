@@ -71,10 +71,10 @@ class Shop
     public function GetPrice(Product $product): int
     {
     	// TODO: Get all inherited products and deduct the corresponding transactions from the price of this product
-    	if ($product->GetInherited() == null) // Sets the price of all the first ones a bit down
+    	/*if ($product->GetInherited() == null) // Sets the price of all the first ones a bit down
 		{
 			return $product->GetDefaultPrice() * .5;
-		}
+		}*/
 
     	$price = $product->GetDefaultPrice();
 
@@ -108,9 +108,16 @@ class Shop
         return $this->ac->GetTransactionsByProfile($this->profile);
     }
 
-    public function Purchase(Product $product): void
+    public function Purchase(Product $product, ?string $token = null): void
     {
-		throw new NotImplementedException();
+    	if ($this->GetBalance() < $this->GetPrice($product)) // Insufficient funds
+		{
+			$this->Donate($this->GetPrice($product) - $this->GetBalance(), $token); // Add funds
+		}
+
+		$transaction = $this->ac->CreatePurchase($this->profile, $product, $this->GetPrice($product));
+
+		$product->GetGameServer()->Activate($transaction);
     }
 
     public function Donate(int $amount, string $token): void
@@ -127,6 +134,6 @@ class Shop
 
 		$this->ac->AddBalance($this->profile, $amount, $token);
 
-		//TODO: Give announcement and activate transaction to that specific server
+		//TODO: Give announcement to all servers
     }
 }

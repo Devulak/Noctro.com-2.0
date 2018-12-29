@@ -5,6 +5,7 @@ namespace persistence;
 use domain\GameCode;
 use Domain\GameServer;
 use Domain\IAccessor;
+use Domain\MinecraftServer;
 use Domain\NotImplementedException;
 use Domain\Product;
 use Domain\Profile;
@@ -12,10 +13,32 @@ use Domain\Transaction;
 
 class Accessor extends Connection implements IAccessor
 {
-	function GetGameServerById(int $id): ?GameServer
+	public function GetGameServerById(int $gameServerId): ?GameServer
 	{
-		// TODO: Implement GetGameServerById() method.
-		throw new NotImplementedException();
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `title`,
+                `rconIp`,
+                `rconPort`,
+                `rconPassword`
+            FROM `GameServer`
+            
+            INNER JOIN MinecraftServer
+            ON MinecraftServer.gameServer = GameServer.id
+            
+			WHERE `id` = '$gameServerId'
+        ");
+
+		if ($results->num_rows > 0)
+		{
+			$result = $results->fetch_object();
+
+			return new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
+		}
+		return null;
 	}
 
 	function GetTransactionByProfileAndProduct(Profile $profile, Product $product): ?Transaction
@@ -243,5 +266,49 @@ class Accessor extends Connection implements IAccessor
 			INSERT INTO Transaction (profile, time, amount, token) VALUES
 			($profileId, $time, $amount, '$token')
 		");
+	}
+
+	public function CreatePurchase(Profile $profile, Product $product, int $amount): Transaction
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$time = time();
+
+		$productId = $product->GetId();
+
+		$con->query("
+			INSERT INTO Transaction (profile, time, amount, product) VALUES
+			($profileId, $time, -$amount, $productId)
+		");
+
+		return $this->GetTransactionByProfileAndProduct($profile, $product);
+	}
+
+	public function GetProfileById(int $profileId): ?Profile
+	{
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `email`,
+                `hash`,
+                `token`
+            FROM `Profile`
+			WHERE `id` = '$profileId'
+        ");
+
+		if ($results->num_rows > 0)
+		{
+			$result = $results->fetch_object();
+
+			return new Profile(new ProfileAccessor(), $result->id, $result->email, $result->hash, $result->token);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

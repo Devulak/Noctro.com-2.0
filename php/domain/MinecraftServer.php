@@ -23,6 +23,23 @@ class MinecraftServer extends GameServer
 
     public function Activate(Transaction $transaction): void
     {
-        throw new NotImplementedException();
+		$profile = $transaction->GetProfile();
+
+		$product = $transaction->GetProduct();
+
+		$links = $profile->GetAllLinks();
+		foreach	($links as $link)
+		{
+			if ($link instanceof MojangLink)
+			{
+				$rcon = new Rcon($this->rconIp, $this->rconPort, $this->rconPassword);
+
+				if ($rcon->connect())
+				{
+					$rcon->sendCommand("upc setGroups " . $link->GetUsername() . " " . $product->GetTitle());
+					$rcon->sendCommand("broadcast &9&l" . $link->GetUsername() . "&f just purchased &c&l" . $product->GetTitle() . "&f rank!");
+				}
+			}
+		}
     }
 }

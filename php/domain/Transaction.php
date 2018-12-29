@@ -46,4 +46,9 @@ class Transaction
 	{
 		return $this->time;
 	}
+
+	public function GetProfile(): Profile
+	{
+		return $this->ac->GetProfileById($this->profile);
+	}
 }

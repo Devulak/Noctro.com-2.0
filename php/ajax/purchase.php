@@ -12,8 +12,7 @@ header('Content-type: text/xml');
 $ajax = new Ajax();
 $input = $_POST ? $_POST : $_GET;
 $productId = $input['product'];
-$amount = $input['amount'];
-$token = $input['token'];
+$token = isset($input['token']) ? $input['token'] : null;
 
 $pac = new ProfileAccessor();
 
@@ -33,19 +32,7 @@ if ($product != null)
 {
 	if (!$shop->IsOwned($product))
 	{
-		$amount = $result->price;
-		if ($amount > $profile->getBalance()) // Insufficient funds
-		{
-			if(!$token)
-			{
-				$ajax->error("token", "No token provided");
-			}
-			else
-			{
-				$shop->Donate($amount - $profile->getBalance(), $token);
-			}
-		}
-		AttemptProductPurchase($productId, $amount, $profile, $ajax);
+		$shop->Purchase($product, $token);
 	}
 	else
 	{
@@ -55,37 +42,6 @@ if ($product != null)
 else
 {
 	$ajax->error("product", "Specified product does not exist!");
-}
-
-function AttemptProductPurchase(int $productID, int $amount, Profile $profile, Ajax $ajax)
-{
-	// Check to see if it's a product
-	$sa = new ShopAccessor();
-	$results = $sa->GetProductById($productID, $profile->GetId());
-	if ($result = $results->fetch_object())
-	{
-		if ($result->own)
-		{
-			$ajax->error("product", "You already own the product");
-		}
-		else
-		{
-			$amount = $result->price;
-			if ($amount > $profile->getBalance()) // Insufficient funds
-			{
-				$ajax->error("product", "Insufficient funds");
-			}
-			else
-			{
-				$sa = new ShopAccessor();
-				$sa->Purchase($profile->GetId(), $amount, $productID);
-			}
-		}
-	}
-	else
-	{
-		$ajax->error("product", "Specified product does not exist!");
-	}
 }
 
 echo $ajax->asXML();
