@@ -19,4 +19,8 @@ interface IAccessor
 	public function GetUnclaimedGameCodes(): array;
 
 	public function GetClaimedGameCodes(Profile $profile): array;
+
+	public function ClaimGameCode(GameCode $gameCode, Profile $profile): void;
+
+	public function AddBalance(Profile $profile, int $amount, string $token): void;
 }

@@ -54,6 +54,7 @@ class Lottery
 
 	/**
 	 * @throws NoTokensLeftException
+	 * @throws NoGameCodesLeftException
 	 */
 	public function ClaimRandomGameCode(): void
 	{
@@ -62,6 +63,14 @@ class Lottery
 			throw new NoTokensLeftException();
 		}
 
-		throw new NotImplementedException();
+		if (count($this->GetUnclaimedGameCodes()) == 0)
+		{
+			throw new NoGameCodesLeftException();
+		}
+
+		$gameCodes = $this->GetUnclaimedGameCodes();
+		shuffle($gameCodes);
+
+		$this->ac->ClaimGameCode($gameCodes[0], $this->profile);
 	}
 }

@@ -2,9 +2,12 @@
 
 namespace Presentation;
 
+use Persistence\Config;
+use SimpleXMLElement;
+
 class Form extends XMLSnip
 {
-    public function __construct($action = string)
+    public function __construct(string $action)
     {
         LinkCollector::addLink('submit');
         LinkCollector::addScript('ajax');
@@ -12,7 +15,7 @@ class Form extends XMLSnip
         LinkCollector::addScript('submit');
 
 
-        $xml = '<form class="submit" method="post" action="' . Config::GetPath() . '/php/ajax/' . $action . '.php"/>';
+        $xml = "<form class='submit' method='post' action='$action'/>";
 
         $this->xml = new SimpleXMLElement($xml);
     }

@@ -12,7 +12,7 @@ class Transaction
     private $profile;
     private $product;
 
-    public function __construct(IAccessor $ac, int $id, int $time, int $amount, int $profile, ?int $token = null, ?int $product = null)
+    public function __construct(IAccessor $ac, int $id, int $time, int $amount, int $profile, ?string $token = null, ?int $product = null)
     {
         $this->ac = $ac;
         $this->id = $id;

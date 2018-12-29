@@ -29,13 +29,13 @@ class Accessor extends Connection implements IAccessor
 		$results = $con->query("
             SELECT
                 `id`,
-                `user` as profile,
+                `profile`,
                 `time`,
                 `amount`,
                 `product`,
                 `token`
-            FROM `balance`
-			WHERE `user` = '$profileId'
+            FROM `Transaction`
+			WHERE `profile` = '$profileId'
             AND `product` = '$productId'
 			ORDER BY `id` DESC
         ");
@@ -58,13 +58,13 @@ class Accessor extends Connection implements IAccessor
 		$results = $con->query("
             SELECT
                 `id`,
-                `user` as profile,
+                `profile`,
                 `time`,
                 `amount`,
                 `product`,
                 `token`
-            FROM `balance`
-			WHERE `user` = '$profileId'
+            FROM `Transaction`
+			WHERE `profile` = '$profileId'
 			ORDER BY `id` DESC
         ");
 
@@ -89,8 +89,8 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `game_server`
-            FROM `shop_product`
+                `gameServer`
+            FROM `Product`
 			WHERE `id` = '$id'
         ");
 
@@ -98,7 +98,7 @@ class Accessor extends Connection implements IAccessor
 		{
 			$result = $results->fetch_object();
 
-			return new Product($this, $result->id, $result->title, $result->game_server, $result->price, $result->inherit);
+			return new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
 		}
 		else
 		{
@@ -117,15 +117,15 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `game_server`
-            FROM `shop_product`
+                `gameServer`
+            FROM `Product`
         ");
 
 		$products = array();
 
 		while ($result = $results->fetch_object())
 		{
-			$products[] = new Product($this, $result->id, $result->title, $result->game_server, $result->price, $result->inherit);
+			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
 		}
 
 		return $products;
@@ -144,8 +144,8 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `game_server`
-            FROM `shop_product`
+                `gameServer`
+            FROM `Product`
 			WHERE `inherit` = '$productId'
         ");
 
@@ -153,7 +153,7 @@ class Accessor extends Connection implements IAccessor
 
 		while ($result = $results->fetch_object())
 		{
-			$products[] = new Product($this, $result->id, $result->title, $result->game_server, $result->price, $result->inherit);
+			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
 		}
 
 		return $products;
@@ -166,12 +166,12 @@ class Accessor extends Connection implements IAccessor
 		$results = $con->query("
             SELECT
                 `id`,
-                `subject` as title,
+                `title`,
                 `code`,
-                `user` as profile,
+                `profile`,
             	`time`
-            FROM `token_game`
-			WHERE `user` IS NULL
+            FROM `GameCode`
+			WHERE `profile` IS NULL
         ");
 
 		$gameCodes = array();
@@ -193,12 +193,12 @@ class Accessor extends Connection implements IAccessor
 		$results = $con->query("
             SELECT
                 `id`,
-                `subject` as title,
+                `title`,
                 `code`,
-                `user` as profile,
+                `profile`,
             	`time`
-            FROM `token_game`
-			WHERE `user` = '$profileId'
+            FROM `GameCode`
+			WHERE `profile` = '$profileId'
         ");
 
 		$gameCodes = array();
@@ -209,5 +209,39 @@ class Accessor extends Connection implements IAccessor
 		}
 
 		return $gameCodes;
+	}
+
+	public function ClaimGameCode(GameCode $gameCode, Profile $profile): void
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$gameCodeId = $gameCode->GetId();
+
+		$time = time();
+
+		$con->query("
+			UPDATE `GameCode`
+			SET `profile` = $profileId,
+			    `time` = $time
+			WHERE id = $gameCodeId
+		");
+	}
+
+	public function AddBalance(Profile $profile, int $amount, string $token): void
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$time = time();
+
+		$token = $con->real_escape_string($token);
+
+		$con->query("
+			INSERT INTO Transaction (profile, time, amount, token) VALUES
+			($profileId, $time, $amount, '$token')
+		");
 	}
 }

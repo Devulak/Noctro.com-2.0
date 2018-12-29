@@ -4,11 +4,13 @@ namespace Domain;
 
 interface IProfileAccessor
 {
-    function GetProfileByToken(string $token): ?Profile;
+	public function GetProfileByToken(string $token): ?Profile;
 
-    function  CreateProfile(string $email, string $hash): Profile;
+	public function CreateProfile(string $email, string $hash): void;
 
-    function GetProfileByEmail(string $email): ?Profile;
+	public function GetProfileByEmail(string $email): ?Profile;
 
-    function GetAllLinks(int $id): array;
+    public function GetAllLinksByProfile(Profile $profile): array;
+
+	public function DeleteLink(Link $link): void;
 }

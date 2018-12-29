@@ -3,7 +3,8 @@
 namespace Persistence;
 
 use Domain\IProfileAccessor;
-use Domain\NotImplementedException;
+use Domain\Link;
+use Domain\MojangLink;
 use Domain\Profile;
 
 class ProfileAccessor extends Connection implements IProfileAccessor
@@ -21,7 +22,7 @@ class ProfileAccessor extends Connection implements IProfileAccessor
                 `email`,
                 `hash`,
                 `token`
-            FROM `user_users`
+            FROM `Profile`
 			WHERE `token` = '$token'
         ");
 
@@ -37,21 +38,100 @@ class ProfileAccessor extends Connection implements IProfileAccessor
 		}
     }
 
-    function  CreateProfile(string $email, string $hash): Profile
+    public function CreateProfile(string $email, string $hash): void
     {
-        throw new NotImplementedException();
-        // TODO: Implement  CreateProfile() method.
+		$con = self::GetConnection();
+
+		$email = $con->real_escape_string($email);
+
+		$hash = $con->real_escape_string($hash);
+
+		$con->query("
+			INSERT INTO `Profile` (email, hash) VALUES
+			('$email', '$hash')
+		");
+
+		$insertId = $con->insert_id;
+		$token = sha1($insertId . microtime() . mt_rand());
+		$token = $con->real_escape_string($token);
+
+		$con->query("
+				UPDATE Profile
+				SET token = '$token'
+				WHERE id = '$insertId' 
+			");
     }
 
     function GetProfileByEmail(string $email): ?Profile
     {
-        throw new NotImplementedException();
-        // TODO: Implement GetProfileByEmail() method.
+		$con = self::GetConnection();
+
+		$email = $con->real_escape_string($email);
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `email`,
+                `hash`,
+                `token`
+            FROM `Profile`
+			WHERE `email` = '$email'
+        ");
+
+		if ($results->num_rows > 0)
+		{
+			$result = $results->fetch_object();
+
+			return new Profile($this, $result->id, $result->email, $result->hash, $result->token);
+		}
+		else
+		{
+			return null;
+		}
     }
 
-    function GetAllLinks(int $id): array
-    {
-        throw new NotImplementedException();
-        // TODO: Implement GetAllLinks() method.
-    }
+	function GetAllLinksByProfile(Profile $profile): array
+	{
+		return $this->GetAllMojangLinks($profile);
+	}
+
+	private function GetAllMojangLinks(Profile $profile): array
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `bind`
+            FROM `Link`
+            
+            INNER JOIN `MojangLink`
+            ON MojangLink.link = Link.id
+            
+			WHERE `profile` = $profileId
+        ");
+
+		$mojangLinks = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$mojangLinks[] = new MojangLink($this, $result->id, $result->bind);
+		}
+
+		return $mojangLinks;
+	}
+
+	public function DeleteLink(Link $link): void
+	{
+		$con = self::GetConnection();
+
+		$linkId = $link->GetId();
+
+		$con->query("
+			DELETE FROM Link
+			WHERE id = $linkId
+		");
+	}
 }

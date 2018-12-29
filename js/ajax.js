@@ -12,11 +12,11 @@ function ajax(sendUrl, formData, returnFunction = function(){})
 
 	xmlhttp.onreadystatechange=function()
 	{
-		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+		if(xmlhttp.readyState === 4 && xmlhttp.status === 200)
 		{
 			returnFunction(xmlhttp.responseXML);
 		}
-		else if(xmlhttp.readyState==4) // any error message by the server, try again in a sec.
+		else if(xmlhttp.readyState === 4) // any error message by the server, try again in a sec.
 		{
 			setTimeout(function(){
 				ajax(sendUrl, formData, returnFunction);

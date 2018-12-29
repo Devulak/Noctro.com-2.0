@@ -1,11 +1,28 @@
 <?php
-	require_once 'php/init.php';
 
-	$profile = Profile::getInstance();
+require_once "php/init.php";
 
-	$GLB = new GameLotteryBase($profile);
+$profile = \Presentation\AccessPoint::GetProfile(new \Persistence\ProfileAccessor());
 
-	$GLB->SpinForGame();
+if($profile == null)
+{
+	header("Location: login.php");
+	die;
+}
 
-	header('Location: ' . Config::GetPath() . "dashboard");
-?>
+$lottery = new \domain\Lottery(new \Persistence\Accessor(), $profile);
+
+try
+{
+	$lottery->ClaimRandomGameCode();
+}
+catch (\domain\NoTokensLeftException $e)
+{
+	echo "You don't have enough tokens!";
+}
+catch (\domain\NoGameCodesLeftException $e)
+{
+	echo "Sorry, but it doesn't seem that there's more games available!";
+}
+
+header("Location: dashboard.php");

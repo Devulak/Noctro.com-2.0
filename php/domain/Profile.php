@@ -19,9 +19,9 @@ class Profile
         $this->token = $token;
     }
 
-    public static function Create(IProfileAccessor $ac, string $email, string $hash): Profile
+    public static function Create(IProfileAccessor $ac, string $email, string $password): void
     {
-        return $ac-> CreateProfile($email, $hash);
+    	$ac->CreateProfile($email, password_hash($password, PASSWORD_DEFAULT));
     }
 
     public static function GetByToken(IProfileAccessor $ac, string $token): ?Profile
@@ -38,16 +38,26 @@ class Profile
         return false;
     }
 
-    public static function Login(IProfileAccessor $ac, string $email, string $password): Profile
+    public static function GetByEmailAndPassword(IProfileAccessor $ac, string $email, string $password): ?Profile
     {
-        throw new NotImplementedException();
-		//return password_verify($password, $this->hash);
+		$profile = $ac->GetProfileByEmail($email);
+
+		if (password_verify($password, $profile->hash))
+		{
+			return $profile;
+		}
+		return null;
     }
 
     public function GetAllLinks(): array
     {
-        return $this->ac->GetAllLinks($this->id);
+        return $this->ac->GetAllLinksByProfile($this);
     }
+
+	public function RemoveLink(Link $link): void
+	{
+		$this->ac->DeleteLink($link);
+	}
 
     public function GetId(): int
     {

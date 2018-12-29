@@ -2,11 +2,15 @@
 
 namespace Presentation;
 
+use Domain\MojangLink;
+use Domain\Profile;
+use SimpleXMLElement;
+
 class LinkAccount extends XMLSnip
 {
 	private $profile;
 
-	function __construct($profile = Profile)
+	function __construct(Profile $profile)
 	{
 		$this->profile = $profile;
 
@@ -16,14 +20,14 @@ class LinkAccount extends XMLSnip
 		$this->xml = new SimpleXMLElement("<div />");
 		$this->xml->addAttribute("class", "blocks");
 
-		$this->IncludeSteam();
+		//$this->IncludeSteam();
 		$this->IncludeMinecraft();
 		//$this->IncludeDiscord();
 	}
 
 	private function IncludeSteam()
 	{
-		$block = $this->xml->addChild("div");
+		/*$block = $this->xml->addChild("div");
 		$block->addAttribute("class", "block");
 
 		$header = $block->addChild("h2", "Steam");
@@ -44,19 +48,31 @@ class LinkAccount extends XMLSnip
 			$link = $block->addChild("a", "Unlink Steam account");
 			$link->addAttribute("href", "unlinksteam.php");
 		}
-		$link->addAttribute("class", "buttonstyle");
+		$link->addAttribute("class", "buttonstyle");*/
 	}
 
-	private function IncludeMinecraft()
+	private function IncludeMinecraft(): void
 	{
 		$block = $this->xml->addChild("div");
 		$block->addAttribute("class", "block");
 
 		$header = $block->addChild("h2", "Minecraft");
 
-		if ($this->profile->GetMinecraftID())
+		$links = $this->profile->GetAllLinks();
+
+		$mojangLink = null;
+		foreach	($links as $link)
 		{
-			$description = $block->addChild("p", $this->profile->GetMinecraftID());
+			if ($link instanceof MojangLink)
+			{
+				$mojangLink = $link;
+				break;
+			}
+		}
+
+		if ($mojangLink != null)
+		{
+			$description = $block->addChild("p", $mojangLink->GetUsername());
 			$link = $block->addChild("a", "Unlink Minecraft username");
 			$link->addAttribute("href", "unlinkminecraft.php");
 			$link->addAttribute("class", "buttonstyle");
@@ -77,11 +93,5 @@ class LinkAccount extends XMLSnip
 			$submit->addAttribute("class", "buttonstyle");
 			$submit->addAttribute("value", "Link Minecraft username");
 		}
-	}
-
-	private function IncludeDiscord()
-	{
-		$block = $this->xml->addChild("div", "Discord");
-		$block->addAttribute("class", "block");
 	}
 }

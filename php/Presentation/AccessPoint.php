@@ -22,19 +22,19 @@ class AccessPoint
 				self::$profile = Profile::GetByToken($ac, $_SESSION['token']);
 				if (self::$profile != null)
 				{
-					self::login(self::$profile);
+					self::Login(self::$profile);
 				}
             }
         }
         return self::$profile;
     }
 
-    public static function login(Profile $profile)
+    public static function Login(Profile $profile)
     {
         setcookie("token", $profile->GetToken(), time()+60*60*24*365, "/");
     }
 
-    public static function logout()
+    public static function Logout()
     {
         setcookie("token", "", time()-60*60*24*365, "/");
         $_SESSION["token"] = false;

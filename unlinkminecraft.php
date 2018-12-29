@@ -1,14 +1,25 @@
 <?php
 
-require_once 'php/init.php';
+require_once "php/init.php";
 
-$profile = Profile::getInstance();
-if(!$profile)
+$pa = new \Persistence\ProfileAccessor();
+
+$profile = \Presentation\AccessPoint::GetProfile($pa);
+
+if($profile == null)
 {
-	header('Location: ' . Init::getPath() . "login");
+	header("Location: login.php");
 	die;
 }
 
-$profile->setMinecraftID(null);
+$links = $profile->GetAllLinks();
 
-header('Location: dashboard');
+foreach	($links as $link)
+{
+	if ($link instanceof \Domain\MojangLink)
+	{
+		$profile->RemoveLink($link);
+	}
+}
+
+header('Location: dashboard.php');

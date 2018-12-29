@@ -2,6 +2,8 @@
 
 namespace Domain;
 
+use Persistence\Config;
+
 class Shop
 {
     private $profile;
@@ -96,10 +98,10 @@ class Shop
 		return $price;
     }
 
-    public function PersonalPrice(Product $product): int
-    {
-        throw new NotImplementedException();
-    }
+	public function GetProductById(int $productId): ?Product
+	{
+		return $this->ac->GetProductById($productId);
+	}
 
     public function GetAllTransactions(): array
     {
@@ -108,11 +110,23 @@ class Shop
 
     public function Purchase(Product $product): void
     {
-        throw new NotImplementedException();
+		throw new NotImplementedException();
     }
 
-    public function Donate(int $amount): void
+    public function Donate(int $amount, string $token): void
     {
-        throw new NotImplementedException();
+    	//TODO: Interface for a Charge()
+		require_once("../stripe/init.php");
+		\Stripe\Stripe::setApiKey(Config::GetStripe()["private_key"]);
+		\Stripe\Charge::create(array(
+			'card' => $token,
+			'amount' => $amount,
+			'currency' => 'EUR',
+			'description' => $this->profile->GetEmail()
+		));
+
+		$this->ac->AddBalance($this->profile, $amount, $token);
+
+		//TODO: Give announcement and activate transaction to that specific server
     }
 }

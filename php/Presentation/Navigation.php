@@ -26,7 +26,7 @@ class Navigation extends XMLSnip
 			<nav>
 				<div class='logo'><img src='images/logo.svg' /></div>
 				<div class='spread'></div>
-				<form class='donate payment' method='post' action='" . Config::GetPath() . "/php/ajax/purchase.php'>
+				<form class='donate payment' method='post' action='php/ajax/donate.php'>
 					<div class='valuta'>€</div>
 					<input type='hidden' name='public_key' value='" . Config::GetStripe()["public_key"] . "' />
 					<input type='hidden' name='email' value='" . $profile->getEmail() . "' />
@@ -38,7 +38,7 @@ class Navigation extends XMLSnip
 					€ " . number_format($balanceInt) . "<span class='small'>." . sprintf('%02d', $balanceDecimal) . "</span>
 					<span class='alt small'> / " . number_format($donatedInt) . "<span class='small'>." . sprintf('%02d', $donatedDecimal) . "</span></span></div>
 				<div class='email'>" . $profile->getEmail() . "</div>
-				<a class='logout end' href='" . Config::GetPath() . "/login'>Logout</a>
+				<a class='logout end' href='login.php'>Logout</a>
 			</nav>
 		";
 

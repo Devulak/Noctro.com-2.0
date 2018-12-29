@@ -26,9 +26,9 @@ $doc->setTitle("Dashboard");
 $nav = new \Presentation\Navigation($profile);
 $doc->appendXMLSnip($nav);
 
-/*$doc->appendXML("<h1>Link your accounts</h1>");
+$doc->appendXML("<h1>Link your accounts</h1>");
 $link = new \Presentation\LinkAccount($profile);
-$doc->appendXML($link->getXML());*/
+$doc->appendXML($link->getXML());
 
 $doc->appendXML("<h1>Donation shop</h1>");
 $donatorShop = new \Presentation\DonatorShop($profile);

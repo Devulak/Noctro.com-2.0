@@ -1,34 +1,39 @@
 <?php
-	require_once 'php/init.php';
 
-	Profile::logout();
+use Presentation\LinkCollector;
+use Presentation\Page;
+use Presentation\Form;
+use Presentation\AccessPoint;
 
-	LinkCollector::addLink('login');
-	LinkCollector::addScript('dust');
+require_once 'php/init.php';
 
-	$doc = new Page();
+AccessPoint::Logout();
 
-	$doc->setTitle('Login');
+LinkCollector::addLink('login');
+LinkCollector::addScript('dust');
 
-	$doc->appendXML('
-		<canvas id="background" />
-		<script>
-			var dust = Dust(document.getElementById("background"), 1);
-		</script>
-	');
+$doc = new Page();
 
-	$form = new Form("user_login");
-	
-	$form->addTitle("Welcome");
-	$form->addDescription("How's it going?");
-	$form->addInput("Email", "email", "email");
-	$form->addInput("Password", "password", "password");
-	$form->addSub("Lost your password? <a href=\"/lost\">Find it!</a>");
-	$form->addSubmit("Login");
-	$form->addSub("Need an account? <a href=\"/register\">Register</a>");
+$doc->setTitle('Login');
+
+$doc->appendXML('
+	<canvas id="background" />
+	<script>
+		var dust = Dust(document.getElementById("background"), 1);
+	</script>
+');
+
+$form = new Form("php/ajax/userLogin.php");
+
+$form->addTitle("Welcome");
+$form->addDescription("How's it going?");
+$form->addInput("Email", "email", "email");
+$form->addInput("Password", "password", "password");
+$form->addSub("Lost your password? <a href='lost.php'>Find it!</a>");
+$form->addSubmit("Login");
+$form->addSub("Need an account? <a href='register.php'>Register</a>");
 
 
-	$doc->appendXML($form->getXML());
+$doc->appendXML($form->getXML());
 
-	$doc->print();
-?>
+$doc->print();
