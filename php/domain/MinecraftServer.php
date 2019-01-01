@@ -2,6 +2,9 @@
 
 namespace Domain;
 
+use Exception;
+use SourceQuery\SourceQuery;
+
 class MinecraftServer extends GameServer
 {
 	private $rconIp;
@@ -24,14 +27,25 @@ class MinecraftServer extends GameServer
 		{
 			if ($link instanceof MojangLink)
 			{
-				$rcon = new Rcon($this->rconIp, $this->rconPort, $this->rconPassword);
+				$sq = new SourceQuery();
 
-				if ($rcon->connect())
+				$username = $link->GetUsername();
+
+				try
 				{
-					$username = $link->GetUsername();
+					$sq->Connect($this->rconIp, $this->rconPort);
 
-					$rcon->sendCommand("broadcast &9&l$username&f $announcement &c&l$special&f.");
-					$rcon->disconnect();
+					$sq->SetRconPassword($this->rconPassword);
+
+					$sq->Rcon("broadcast &9&l$username&f $announcement &c&l$special&f.");
+				}
+				catch(Exception $e)
+				{
+					echo $e->getMessage();
+				}
+				finally
+				{
+					$sq->Disconnect();
 				}
 			}
 		}
@@ -49,17 +63,28 @@ class MinecraftServer extends GameServer
 		{
 			if ($link instanceof MojangLink)
 			{
-				$rcon = new Rcon($this->rconIp, $this->rconPort, $this->rconPassword);
+				$sq = new SourceQuery();
 
-				if ($rcon->connect())
+				$username = $link->GetUsername();
+
+				$productTitle = $product->GetTitle();
+
+				try
 				{
-					$username = $link->GetUsername();
+					$sq->Connect($this->rconIp, $this->rconPort);
 
-					$productTitle = $product->GetTitle();
+					$sq->SetRconPassword($this->rconPassword);
 
-					$rcon->sendCommand("upc setGroups $username $productTitle");
-					$rcon->sendCommand("broadcast &9&l$username&f just purchased &c&l$productTitle&f rank!");
-					$rcon->disconnect();
+					$sq->Rcon("upc setGroups $username $productTitle");
+					$sq->Rcon("broadcast &9&l$username&f just purchased &c&l$productTitle&f rank!");
+				}
+				catch(Exception $e)
+				{
+					echo $e->getMessage();
+				}
+				finally
+				{
+					$sq->Disconnect();
 				}
 			}
 		}

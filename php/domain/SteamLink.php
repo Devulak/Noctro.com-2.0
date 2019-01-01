@@ -13,8 +13,8 @@ class SteamLink extends Link
 		parent::__construct($ac, $id, $bind);
 	}
 
-    public function GetUsername(): string
-    {
+	public function GetUsername(): string
+	{
 		$config = Config::GetSteam();
 		$url = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $config['apikey'] . "&steamids=" . $this->bind);
 		$content = json_decode($url);
@@ -37,7 +37,7 @@ class SteamLink extends Link
 		$this->primaryclanid = $content->primaryclanid;
 		$this->timecreated = $content->timecreated;
 		$this->personastateflags = $content->personastateflags;*/
-    }
+	}
 
 	public static function Create(IProfileAccessor $ac, Profile $profile, string $bind): Link
 	{

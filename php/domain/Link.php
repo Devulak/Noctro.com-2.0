@@ -20,6 +20,11 @@ abstract class Link
 		return $this->id;
 	}
 
+	public function GetBind(): string
+	{
+		return $this->bind;
+	}
+
 	public abstract static function Create(IProfileAccessor $ac, Profile $profile, string $bind): Link;
 
 	public abstract function GetUsername(): string;

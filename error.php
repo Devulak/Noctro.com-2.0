@@ -1,5 +1,6 @@
 <?php
 
+use Domain\Rcon;
 use Presentation\LinkCollector;
 use Presentation\Page;
 

@@ -4,6 +4,7 @@ namespace persistence;
 
 use domain\GameCode;
 use Domain\GameServer;
+use Domain\GarrysModServer;
 use Domain\IAccessor;
 use Domain\MinecraftServer;
 use Domain\Product;
@@ -305,16 +306,41 @@ class Accessor extends Connection implements IAccessor
 			WHERE `id` = '$gameServerId'
         ");
 
-		if ($results->num_rows > 0)
+		while ($result = $results->fetch_object())
 		{
-			$result = $results->fetch_object();
-
 			return new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
 		}
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `title`,
+                `rconIp`,
+                `rconPort`,
+                `rconPassword`
+            FROM `GameServer`
+            
+            INNER JOIN GarrysModServer
+            ON GarrysModServer.gameServer = GameServer.id
+            
+			WHERE `id` = '$gameServerId'
+        ");
+
+		while ($result = $results->fetch_object())
+		{
+			return new GarrysModServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
+		}
+
+
 		return null;
 	}
 
 	public function GetAllGameServers(): array
+	{
+		return array_merge($this->GetAllMinecraftServers(), $this->GetAllGarrysModServers());
+	}
+
+	private function GetAllMinecraftServers(): array
 	{
 		$con = self::GetConnection();
 
@@ -336,6 +362,33 @@ class Accessor extends Connection implements IAccessor
 		while ($result = $results->fetch_object())
 		{
 			$gameServers[] = new MinecraftServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
+		}
+
+		return $gameServers;
+	}
+
+	private function GetAllGarrysModServers(): array
+	{
+		$con = self::GetConnection();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `title`,
+                `rconIp`,
+                `rconPort`,
+                `rconPassword`
+            FROM `GameServer`
+            
+            INNER JOIN GarrysModServer
+            ON GarrysModServer.gameServer = GameServer.id
+        ");
+
+		$gameServers = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$gameServers[] = new GarrysModServer($result->id, $result->title, $result->rconIp, $result->rconPort, $result->rconPassword);
 		}
 
 		return $gameServers;
