@@ -64,7 +64,15 @@ class DonatorShop extends XMLSnip
         }
         else
         {
-            $item->addAttribute("class", "item");
+        	if ($product->GetDefaultPrice() > $product->GetDiscountPrice())
+			{
+				$item->addAttribute("class", "item discount");
+				$item->addAttribute("discountprocent", round((1 - $product->GetDiscountPrice() / $product->GetDefaultPrice()) * 100));
+			}
+        	else
+        	{
+				$item->addAttribute("class", "item");
+			}
 
             $form = $item->addChild("form");
             $form->addAttribute("action", "php/ajax/purchase.php");
@@ -101,18 +109,19 @@ class DonatorShop extends XMLSnip
 			$productInput->addAttribute("name", "product");
 			$productInput->addAttribute("value", $product->GetId());
 
-            $submit = $form->addChild("input");
-            $submit->addAttribute("type", "submit");
-            $submit->addAttribute("class", "option buy");
+			$submitLabel = $form->addChild("label", "€ " . number_format($shop->GetPrice($product) / 100, 2) . " ");
+			$submitLabel->addAttribute("for", "submit" . $product->GetId());
+			$submitLabel->addAttribute("class", "option buy");
 
-            if ($shop->GetPrice($product) != $product->GetDefaultPrice())
+			if ($shop->GetPrice($product) != $product->GetDefaultPrice())
 			{
-				$submit->addAttribute("value", "€ " . number_format($shop->GetPrice($product) / 100, 2) . " (Before: € " . number_format($product->GetDefaultPrice() / 100, 2) . ")");
+				$submitLabel->addChild("span", "(€ " . number_format($product->GetDefaultPrice() / 100, 2) . ")");
 			}
-            else
-			{
-				$submit->addAttribute("value", "€ " . number_format($product->GetDefaultPrice() / 100, 2));
-			}
+
+			$submit = $form->addChild("input");
+			$submit->addAttribute("type", "submit");
+			$submit->addAttribute("id", "submit" . $product->GetId());
+			$submit->addAttribute("hidden", "true");
         }
     }
 }

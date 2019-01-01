@@ -6,7 +6,6 @@ use domain\GameCode;
 use Domain\GameServer;
 use Domain\IAccessor;
 use Domain\MinecraftServer;
-use Domain\NotImplementedException;
 use Domain\Product;
 use Domain\Profile;
 use Domain\Transaction;
@@ -84,7 +83,8 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `gameServer`
+                `gameServer`,
+                `newPrice`
             FROM `Product`
 			WHERE `id` = '$id'
         ");
@@ -93,7 +93,7 @@ class Accessor extends Connection implements IAccessor
 		{
 			$result = $results->fetch_object();
 
-			return new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
+			return new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit, $result->newPrice);
 		}
 		else
 		{
@@ -112,7 +112,8 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `gameServer`
+                `gameServer`,
+                `newPrice`
             FROM `Product`
         ");
 
@@ -120,7 +121,7 @@ class Accessor extends Connection implements IAccessor
 
 		while ($result = $results->fetch_object())
 		{
-			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
+			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit, $result->newPrice);
 		}
 
 		return $products;
@@ -139,7 +140,8 @@ class Accessor extends Connection implements IAccessor
                 `info`,
                 `price`,
             	`inherit`,
-                `gameServer`
+                `gameServer`,
+                `newPrice`
             FROM `Product`
 			WHERE `inherit` = '$productId'
         ");
@@ -148,7 +150,7 @@ class Accessor extends Connection implements IAccessor
 
 		while ($result = $results->fetch_object())
 		{
-			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit);
+			$products[] = new Product($this, $result->id, $result->title, $result->gameServer, $result->price, $result->inherit, $result->newPrice);
 		}
 
 		return $products;

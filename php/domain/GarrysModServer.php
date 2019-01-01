@@ -4,13 +4,13 @@ namespace Domain;
 
 class GarrysModServer extends GameServer
 {
-    public function Announce(string $announcement, Profile $profile): void
-    {
-        throw new NotImplementedException();
-    }
+	public function Announce(string $announcement, Profile $profile, string $special): void
+	{
+		// TODO: Add Announce
+	}
 
-    public function Activate(Transaction $transaction): void
-    {
-        throw new NotImplementedException();
-    }
+	public function Activate(Transaction $transaction): void
+	{
+		// TODO: Add Activate
+	}
 }

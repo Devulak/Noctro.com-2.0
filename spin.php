@@ -2,7 +2,14 @@
 
 require_once "php/init.php";
 
-$profile = \Presentation\AccessPoint::GetProfile(new \Persistence\ProfileAccessor());
+use Presentation\AccessPoint;
+use Persistence\ProfileAccessor;
+use domain\Lottery;
+use persistence\Accessor;
+use domain\NoTokensLeftException;
+use domain\NoGameCodesLeftException;
+
+$profile = AccessPoint::GetProfile(new ProfileAccessor());
 
 if($profile == null)
 {
@@ -10,17 +17,17 @@ if($profile == null)
 	die;
 }
 
-$lottery = new \domain\Lottery(new \Persistence\Accessor(), $profile);
+$lottery = new Lottery(new Accessor(), $profile);
 
 try
 {
 	$lottery->ClaimRandomGameCode();
 }
-catch (\domain\NoTokensLeftException $e)
+catch (NoTokensLeftException $e)
 {
 	echo "You don't have enough tokens!";
 }
-catch (\domain\NoGameCodesLeftException $e)
+catch (NoGameCodesLeftException $e)
 {
 	echo "Sorry, but it doesn't seem that there's more games available!";
 }

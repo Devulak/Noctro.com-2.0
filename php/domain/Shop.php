@@ -70,13 +70,7 @@ class Shop
 
     public function GetPrice(Product $product): int
     {
-    	// TODO: Get all inherited products and deduct the corresponding transactions from the price of this product
-    	/*if ($product->GetInherited() == null) // Sets the price of all the first ones a bit down
-		{
-			return $product->GetDefaultPrice() * .5;
-		}*/
-
-    	$price = $product->GetDefaultPrice();
+    	$price = $product->GetDiscountPrice();
 
     	$inheritProduct = $product->GetInherited();
     	while ($inheritProduct != null)

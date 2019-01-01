@@ -10,8 +10,9 @@ class Product
     private $gameServer;
 	private $price;
 	private $inherit;
+	private $newPrice;
 
-    public function __construct(IAccessor $ac, int $id, string $title, int $gameServer, int $price, ?int $inherit)
+    public function __construct(IAccessor $ac, int $id, string $title, int $gameServer, int $price, ?int $inherit, ?int $newPrice)
     {
 		$this->ac = $ac;
 		$this->id = $id;
@@ -19,6 +20,7 @@ class Product
         $this->gameServer = $gameServer;
 		$this->price = $price;
 		$this->inherit = $inherit;
+		$this->newPrice = $newPrice;
     }
 
 	public function GetId(): int
@@ -39,6 +41,15 @@ class Product
 	public function GetDefaultPrice(): int
 	{
 		return $this->price;
+	}
+
+	public function GetDiscountPrice(): int
+	{
+		if ($this->newPrice == null)
+		{
+			return $this->price;
+		}
+		return $this->newPrice;
 	}
 
 	public function GetInfo(): string
