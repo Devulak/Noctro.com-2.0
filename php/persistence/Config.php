@@ -45,7 +45,7 @@ class Config
     {
         if (!self::$config)
         {
-			self::$config = parse_ini_file(__DIR__ . '/../../../config.ini', true);
+			self::$config = parse_ini_file(__DIR__ . '../../../../config.ini', true);
         }
     }
 }
