@@ -134,4 +134,37 @@ class ProfileAccessor extends Connection implements IProfileAccessor
 			WHERE id = $linkId
 		");
 	}
+
+	public function CreateMojangLink(Profile $profile, string $bind): MojangLink
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$bind = $con->real_escape_string($bind);
+
+		$con->multi_query("
+			INSERT INTO Link (profile, bind) VALUES
+			($profileId, '$bind');
+
+			INSERT INTO MojangLink (link) VALUES
+			(LAST_INSERT_ID());
+
+            SELECT
+                `id`,
+                `bind`
+            FROM `Link`
+            INNER JOIN `MojangLink`
+            ON MojangLink.link = Link.id
+			WHERE id = LAST_INSERT_ID();
+		");
+
+		$con->next_result();
+		$con->next_result();
+
+		while ($result = $con->store_result()->fetch_object())
+		{
+			return new MojangLink($this, $result->id, $result->bind);
+		}
+	}
 }

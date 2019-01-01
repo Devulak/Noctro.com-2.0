@@ -13,4 +13,9 @@ class MojangLink extends Link
     {
     	return $this->bind;
     }
+
+	public static function Create(IProfileAccessor $ac, Profile $profile, string $bind): Link
+	{
+		return $ac->CreateMojangLink($profile, $bind);
+	}
 }

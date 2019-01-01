@@ -13,4 +13,6 @@ interface IProfileAccessor
     public function GetAllLinksByProfile(Profile $profile): array;
 
 	public function DeleteLink(Link $link): void;
+
+	public function CreateMojangLink(Profile $profile, string $bind): MojangLink;
 }
