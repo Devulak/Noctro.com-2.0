@@ -26,7 +26,7 @@ class Navigation extends XMLSnip
 			<nav>
 				<div class='logo'><img src='images/logo.svg' /></div>
 				<div class='spread'></div>
-				<form class='donate payment' method='post' action='php/ajax/donate.php'>
+				<form class='donate payment' method='post' action='php/Ajax/donate.php'>
 					<div class='valuta'>€</div>
 					<input type='hidden' name='public_key' value='" . Config::GetStripe()["public_key"] . "' />
 					<input type='hidden' name='email' value='" . $profile->getEmail() . "' />

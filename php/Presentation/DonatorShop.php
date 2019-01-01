@@ -75,7 +75,7 @@ class DonatorShop extends XMLSnip
 			}
 
             $form = $item->addChild("form");
-            $form->addAttribute("action", "php/ajax/purchase.php");
+            $form->addAttribute("action", "php/Ajax/purchase.php");
             $form->addAttribute("method", "post");
             $form->addAttribute("class", "donate payment");
 

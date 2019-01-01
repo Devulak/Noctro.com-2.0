@@ -23,7 +23,7 @@ $doc->appendXML('
 	</script>
 ');
 
-$form = new Form("php/ajax/userLogin.php");
+$form = new Form("php/Ajax/userLogin.php");
 
 $form->addTitle("Welcome");
 $form->addDescription("How's it going?");

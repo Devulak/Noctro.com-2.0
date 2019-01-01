@@ -24,7 +24,7 @@ $doc->appendXML('
 	</script>
 ');
 
-$form = new Form("php/ajax/userRegister.php");
+$form = new Form("php/Ajax/userRegister.php");
 
 $form->addTitle("Create an account");
 $form->addInput("Email", "email", "email");
