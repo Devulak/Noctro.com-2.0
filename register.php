@@ -31,7 +31,7 @@ $form->addInput("Email", "email", "email");
 $form->addInput("Password", "password", "password");
 $form->addSubmit("Continue");
 $config = Config::GetInit();
-$form->addSub("By continuing you accept to have read and agree to the <a href=\"#\">Terms of Service</a> and <a href=\"#\">Privacy Policy</a>");
+$form->addSub("By continuing you accept to have read and agree to the <a href='terms.php'>Terms of Service</a> and <a href='terms.php'>Privacy Policy</a>");
 $form->addSub("Already have an account? <a href='login.php'>Login</a>");
 
 

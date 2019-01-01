@@ -32,12 +32,18 @@
 	pointer-events: none;
 	position: absolute;
 	transform-origin: 50% 50%;
+	transform: rotate(45deg);
 	top: 1.9rem;
 	line-height: 1.2rem;
 	right: -9.5rem;
 	width: 24rem;
+	/*top: 2rem;
+	right: 2rem;
+	transform-origin: 0% 0%;
+	transform:
+			rotate(45deg)
+			translate(50%, -50%);*/
 	font-size: .8rem;
-	transform: rotate(45deg);
 	content: "Save " attr(discountprocent) "%!";
 	display: block;
 	background-color: #c36;
