@@ -15,4 +15,6 @@ interface IProfileAccessor
 	public function DeleteLink(Link $link): void;
 
 	public function CreateMojangLink(Profile $profile, string $bind): MojangLink;
+
+	public function CreateSteamLink(Profile $profile, string $bind): SteamLink;
 }

@@ -4,6 +4,7 @@ namespace Presentation;
 
 use Domain\MojangLink;
 use Domain\Profile;
+use Domain\SteamLink;
 use SimpleXMLElement;
 
 class LinkAccount extends XMLSnip
@@ -20,35 +21,43 @@ class LinkAccount extends XMLSnip
 		$this->xml = new SimpleXMLElement("<div />");
 		$this->xml->addAttribute("class", "blocks");
 
-		//$this->IncludeSteam();
+		$this->IncludeSteam();
 		$this->IncludeMinecraft();
 		//$this->IncludeDiscord();
 	}
 
 	private function IncludeSteam()
 	{
-		/*$block = $this->xml->addChild("div");
+		$block = $this->xml->addChild("div");
 		$block->addAttribute("class", "block");
 
 		$header = $block->addChild("h2", "Steam");
 
-		if ($this->profile->getSteamID())
+		$links = $this->profile->GetAllLinks();
+
+		$steamLink = null;
+		foreach	($links as $link)
 		{
-			$steamInfo = new SteamInfo($this->profile->getSteamID());
-			$description = $block->addChild("p", $steamInfo->personaname);
+			if ($link instanceof SteamLink)
+			{
+				$steamLink = $link;
+				break;
+			}
 		}
 
-		if (!$this->profile->getSteamID())
+		if ($steamLink != null)
 		{
-			$link = $block->addChild("a", "Link Steam account");
-			$link->addAttribute("href", "linksteamid.php");
+			$description = $block->addChild("p", $steamLink->GetUsername());
+			$link = $block->addChild("a", "Unlink Steam account");
+			$link->addAttribute("href", "unlinksteam.php");
+			$link->addAttribute("class", "buttonstyle");
 		}
 		else
 		{
-			$link = $block->addChild("a", "Unlink Steam account");
-			$link->addAttribute("href", "unlinksteam.php");
+			$link = $block->addChild("a", "Link Steam account");
+			$link->addAttribute("href", "linksteam.php");
+			$link->addAttribute("class", "buttonstyle");
 		}
-		$link->addAttribute("class", "buttonstyle");*/
 	}
 
 	private function IncludeMinecraft(): void

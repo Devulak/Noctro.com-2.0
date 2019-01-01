@@ -2,9 +2,9 @@
 
 require_once 'php/init.php';
 
+use Domain\SteamLink;
 use Presentation\AccessPoint;
 use Persistence\ProfileAccessor;
-use Domain\MojangLink;
 
 $pac = new ProfileAccessor();
 
@@ -15,9 +15,9 @@ if($profile == null)
 	die;
 }
 
-if (preg_match("#^[a-z0-9_]{3,16}$#i", $_POST['username']))
+$steamUnique = SteamLink::AttemptSteamInfo();
+if ($steamUnique != null)
 {
-	MojangLink::Create($pac, $profile, $_POST["username"]);
+	SteamLink::Create($pac, $profile, $steamUnique);
+	header("Location: dashboard.php");
 }
-
-header("Location: dashboard.php");

@@ -6,6 +6,7 @@ use Domain\IProfileAccessor;
 use Domain\Link;
 use Domain\MojangLink;
 use Domain\Profile;
+use Domain\SteamLink;
 
 class ProfileAccessor extends Connection implements IProfileAccessor
 {
@@ -92,10 +93,10 @@ class ProfileAccessor extends Connection implements IProfileAccessor
 
 	function GetAllLinksByProfile(Profile $profile): array
 	{
-		return $this->GetAllMojangLinks($profile);
+		return array_merge($this->GetAllMojangLinksByProfile($profile), $this->GetAllSteamLinksByProfile($profile));
 	}
 
-	private function GetAllMojangLinks(Profile $profile): array
+	private function GetAllMojangLinksByProfile(Profile $profile): array
 	{
 		$con = self::GetConnection();
 
@@ -121,6 +122,34 @@ class ProfileAccessor extends Connection implements IProfileAccessor
 		}
 
 		return $mojangLinks;
+	}
+
+	private function GetAllSteamLinksByProfile(Profile $profile): array
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$results = $con->query("
+            SELECT
+                `id`,
+                `bind`
+            FROM `Link`
+            
+            INNER JOIN `SteamLink`
+            ON SteamLink.link = Link.id
+            
+			WHERE `profile` = $profileId
+        ");
+
+		$steamLinks = array();
+
+		while ($result = $results->fetch_object())
+		{
+			$steamLinks[] = new SteamLink($this, $result->id, $result->bind);
+		}
+
+		return $steamLinks;
 	}
 
 	public function DeleteLink(Link $link): void
@@ -165,6 +194,39 @@ class ProfileAccessor extends Connection implements IProfileAccessor
 		while ($result = $con->store_result()->fetch_object())
 		{
 			return new MojangLink($this, $result->id, $result->bind);
+		}
+	}
+
+	public function CreateSteamLink(Profile $profile, string $bind): SteamLink
+	{
+		$con = self::GetConnection();
+
+		$profileId = $profile->GetId();
+
+		$bind = $con->real_escape_string($bind);
+
+		$con->multi_query("
+			INSERT INTO Link (profile, bind) VALUES
+			($profileId, '$bind');
+
+			INSERT INTO SteamLink (link) VALUES
+			(LAST_INSERT_ID());
+
+            SELECT
+                `id`,
+                `bind`
+            FROM `Link`
+            INNER JOIN `SteamLink`
+            ON SteamLink.link = Link.id
+			WHERE id = LAST_INSERT_ID();
+		");
+
+		$con->next_result();
+		$con->next_result();
+
+		while ($result = $con->store_result()->fetch_object())
+		{
+			return new SteamLink($this, $result->id, $result->bind);
 		}
 	}
 }
