@@ -34,7 +34,7 @@ class BalanceHistory extends XMLSnip
 
 				$gameServerTitle = $gameServer->GetTitle();
 
-				$extra = "<div class='extra'>$gameServerTitle - $productTitle</div>";
+				$extra = "<div class='extra'><span>$gameServerTitle</span> $productTitle</div>";
 			}
 
 			$token = "";

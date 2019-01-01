@@ -67,10 +67,16 @@
 	right: 2rem;
 
 	padding: .5rem 2rem;
-	line-height: 2rem;
 	height: 3rem;
 	margin: auto;
 
-	border-radius: 2rem;
+	border-radius: .3125rem;
 	background-color: #2f3136;
+	text-align: center;
+}
+.balanceHistory .balanceMark .extra span
+{
+	opacity: .4;
+	display: block;
+	font-size: .6rem;
 }
