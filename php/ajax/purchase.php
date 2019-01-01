@@ -4,7 +4,7 @@ require_once("../init.php");
 
 use Ajax\Ajax;
 use Domain\Shop;
-use persistence\Accessor;
+use Persistence\Accessor;
 use Presentation\AccessPoint;
 use Persistence\ProfileAccessor;
 

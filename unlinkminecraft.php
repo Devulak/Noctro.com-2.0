@@ -2,9 +2,13 @@
 
 require_once "php/init.php";
 
-$pa = new \Persistence\ProfileAccessor();
+use Persistence\ProfileAccessor;
+use Presentation\AccessPoint;
+use Domain\MojangLink;
 
-$profile = \Presentation\AccessPoint::GetProfile($pa);
+$pa = new ProfileAccessor();
+
+$profile = AccessPoint::GetProfile($pa);
 
 if($profile == null)
 {
@@ -16,7 +20,7 @@ $links = $profile->GetAllLinks();
 
 foreach	($links as $link)
 {
-	if ($link instanceof \Domain\MojangLink)
+	if ($link instanceof MojangLink)
 	{
 		$profile->RemoveLink($link);
 	}

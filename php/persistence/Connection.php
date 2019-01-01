@@ -2,7 +2,7 @@
 
 namespace Persistence;
 
-use mysqli;
+use Mysqli;
 
 class Connection
 {

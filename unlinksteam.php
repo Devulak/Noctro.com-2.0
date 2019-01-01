@@ -2,9 +2,13 @@
 
 require_once "php/init.php";
 
-$pa = new \Persistence\ProfileAccessor();
+use Domain\SteamLink;
+use Persistence\ProfileAccessor;
+use Presentation\AccessPoint;
 
-$profile = \Presentation\AccessPoint::GetProfile($pa);
+$pa = new ProfileAccessor();
+
+$profile = AccessPoint::GetProfile($pa);
 
 if($profile == null)
 {
@@ -16,7 +20,7 @@ $links = $profile->GetAllLinks();
 
 foreach	($links as $link)
 {
-	if ($link instanceof \Domain\SteamLink)
+	if ($link instanceof SteamLink)
 	{
 		$profile->RemoveLink($link);
 	}

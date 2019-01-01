@@ -5,7 +5,7 @@ namespace Presentation;
 use Domain\Profile;
 use Domain\Shop;
 use Domain\Transaction;
-use persistence\Accessor;
+use Persistence\Accessor;
 use SimpleXMLElement;
 
 class BalanceHistory extends XMLSnip

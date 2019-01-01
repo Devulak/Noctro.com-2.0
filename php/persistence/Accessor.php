@@ -2,7 +2,7 @@
 
 namespace persistence;
 
-use domain\GameCode;
+use Domain\GameCode;
 use Domain\GameServer;
 use Domain\GarrysModServer;
 use Domain\IAccessor;

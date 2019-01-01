@@ -2,10 +2,10 @@
 
 namespace Presentation;
 
-use domain\GameCode;
-use domain\Lottery;
+use Domain\GameCode;
+use Domain\Lottery;
 use Domain\Profile;
-use persistence\Accessor;
+use Persistence\Accessor;
 use SimpleXMLElement;
 
 class GameLottery extends XMLSnip

@@ -1,6 +1,6 @@
 <?php
 
-namespace domain;
+namespace Domain;
 
 use Exception;
 

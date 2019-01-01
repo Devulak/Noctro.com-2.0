@@ -4,10 +4,10 @@ require_once "php/init.php";
 
 use Presentation\AccessPoint;
 use Persistence\ProfileAccessor;
-use domain\Lottery;
-use persistence\Accessor;
-use domain\NoTokensLeftException;
-use domain\NoGameCodesLeftException;
+use Domain\Lottery;
+use Persistence\Accessor;
+use Domain\NoTokensLeftException;
+use Domain\NoGameCodesLeftException;
 
 $profile = AccessPoint::GetProfile(new ProfileAccessor());
 

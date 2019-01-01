@@ -6,7 +6,7 @@ use Ajax\Ajax;
 use Presentation\AccessPoint;
 use Persistence\ProfileAccessor;
 use Domain\Shop;
-use persistence\Accessor;
+use Persistence\Accessor;
 
 header('Content-type: text/xml');
 $ajax = new Ajax();

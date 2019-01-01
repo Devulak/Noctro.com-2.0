@@ -4,7 +4,7 @@ namespace Presentation;
 
 use Domain\Profile;
 use Domain\Shop;
-use persistence\Accessor;
+use Persistence\Accessor;
 use Persistence\Config;
 use SimpleXMLElement;
 
