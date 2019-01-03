@@ -20,7 +20,11 @@ class Navigation extends XMLSnip
 
 		list($balanceInt, $balanceDecimal) = sscanf($shop->GetBalance() / 100, '%d.%d');
 
+		$balanceDecimal = substr(number_format($shop->GetBalance() / 100, 2), -3);
+
 		list($donatedInt, $donatedDecimal) = sscanf($shop->GetDonated() / 100, '%d.%d');
+
+		$donatedDecimal = substr(number_format($shop->GetDonated() / 100, 2), -3);
 
 		$xml = "
 			<nav>
@@ -35,8 +39,8 @@ class Navigation extends XMLSnip
 					<input type='submit' value='Donate' />
 				</form>
 				<div class='balance'>
-					€ " . number_format($balanceInt) . "<span class='small'>." . sprintf('%02d', $balanceDecimal) . "</span>
-					<span class='alt small'> / " . number_format($donatedInt) . "<span class='small'>." . sprintf('%02d', $donatedDecimal) . "</span></span></div>
+					€ " . number_format($balanceInt) . "<span class='small'>$balanceDecimal</span>
+					<span class='alt small'> / " . number_format($donatedInt) . "<span class='small'>$donatedDecimal</span></span></div>
 				<div class='email'>" . $profile->getEmail() . "</div>
 				<a class='logout end' href='login.php'>Logout</a>
 			</nav>
