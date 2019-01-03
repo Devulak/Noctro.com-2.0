@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d2c809b-40f8-42e2-8439-dcd90b8dc1bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/Presentation/DonatorShop.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Presentation/DonatorShop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/Presentation/Navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Presentation/Navigation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Domain/GarrysModServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Domain/GarrysModServer.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/php/Presentation/GameLottery.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding>
                 <element signature="e#32#52#0#PHP" expanded="true" />
               </folding>
@@ -57,13 +54,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/Presentation/DonatorShop.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="77" column="67" lean-forward="true" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+              <caret line="77" column="67" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
               <folding>
                 <element signature="e#32#51#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/Domain/GarrysModServer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="39" column="84" lean-forward="true" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+              <folding>
+                <element signature="e#26#40#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,7 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/linkminecraft.php" />
         <option value="$PROJECT_DIR$/php/domain/IProfileAccessor.php" />
         <option value="$PROJECT_DIR$/php/persistence/ProfileAccessor.php" />
         <option value="$PROJECT_DIR$/php/domain/LightOpenID.php" />
@@ -140,6 +148,7 @@
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/php/Presentation/Navigation.php" />
         <option value="$PROJECT_DIR$/php/Presentation/DonatorShop.php" />
+        <option value="$PROJECT_DIR$/php/Domain/GarrysModServer.php" />
       </list>
     </option>
   </component>
@@ -178,7 +187,7 @@
               <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="Noctro.com-2.0" type="462c0819:PsiDirectoryNode" />
               <item name="php" type="462c0819:PsiDirectoryNode" />
-              <item name="Presentation" type="462c0819:PsiDirectoryNode" />
+              <item name="Domain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
@@ -256,11 +265,12 @@
       <workItem from="1546342030019" duration="22681000" />
       <workItem from="1546375545947" duration="3598000" />
       <workItem from="1546383318083" duration="284000" />
+      <workItem from="1546475817766" duration="104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112287000" />
+    <option name="totallyTimeSpent" value="112391000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -275,8 +285,8 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6366559" visible="true" weight="0.2867804" />
-      <window_info id="Structure" order="1" sideWeight="0.36334404" side_tool="true" visible="true" weight="0.2867804" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6355841" visible="true" weight="0.28997868" />
+      <window_info id="Structure" order="1" sideWeight="0.36441585" side_tool="true" visible="true" weight="0.28997868" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
@@ -536,16 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/GarrysModServer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="33" lean-forward="true" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
-          <folding>
-            <element signature="e#26#40#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/Domain/GameServer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -653,7 +653,7 @@
     <entry file="file://$PROJECT_DIR$/php/Presentation/GameLottery.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="e#32#52#0#PHP" expanded="true" />
           </folding>
@@ -663,9 +663,19 @@
     <entry file="file://$PROJECT_DIR$/php/Presentation/DonatorShop.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="77" column="67" lean-forward="true" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+          <caret line="77" column="67" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
           <folding>
             <element signature="e#32#51#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Domain/GarrysModServer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="39" column="84" lean-forward="true" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+          <folding>
+            <element signature="e#26#40#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

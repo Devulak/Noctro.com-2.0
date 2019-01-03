@@ -37,7 +37,7 @@ class GarrysModServer extends GameServer
 
 					$sq->SetRconPassword($this->rconPassword);
 
-					$sq->Rcon("ev pa [$username] $announcement [$special].");
+					$sq->Rcon("ev notice [$username] $announcement [$special]. 60");
 				}
 				catch(Exception $e)
 				{
@@ -57,7 +57,7 @@ class GarrysModServer extends GameServer
 
 		$product = $transaction->GetProduct();
 
-		$productTitle = $product->GetTitle();
+		$productTitle = strtolower($product->GetTitle());
 
 		$links = $profile->GetAllLinks();
 
