@@ -19,17 +19,6 @@ if($profile == null)
 
 $lottery = new Lottery(new Accessor(), $profile);
 
-try
-{
-	$lottery->ClaimRandomGameCode();
-}
-catch (NoTokensLeftException $e)
-{
-	echo "You don't have enough tokens!";
-}
-catch (NoGameCodesLeftException $e)
-{
-	echo "Sorry, but it doesn't seem that there's more games available!";
-}
+$lottery->ClaimRandomGameCode();
 
 header("Location: dashboard.php");
