@@ -1,12 +1,14 @@
 RewriteEngine On
 
-
+# Discord
+RewriteCond %{HTTP_HOST} ^discord\.
+RewriteRule .* https://discordapp.com/invite/dgtpk53 [L,R=301]
 
 # adds https and www
-#RewriteCond %{HTTPS} off
-#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-#RewriteCond %{HTTP_HOST} !^www\.
-#RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 
 
@@ -38,8 +40,6 @@ RewriteRule ^settings$ /settings.php [L]
 
 # Loading redirect
 RewriteRule ^loading/(.*)$ /loading.php?subject=$1 [L]
-
-
 
 # Error redirect
 ErrorDocument 404 /error.php
