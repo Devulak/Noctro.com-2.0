@@ -1,23 +1,36 @@
 <?php
-	require_once 'php/init.php';
 
-	$doc = new Page();
+require_once 'php/init.php';
 
-	$doc->setTitle('Loading');
+use Presentation\Page;
+use Presentation\LinkCollector;
 
-	$quote = new Quote('loading');
+$doc = new Page();
 
-	$doc->appendXML('
-		<header>
+LinkCollector::addLink('loading');
+LinkCollector::addScript('loading');
+
+$doc->setTitle('Loading');
+
+$doc->appendXML('
+	<div class="body">
+		<div class="imageshot" />
+		<div class="bloke">
 			<div class="container">
-				<div>
-					' . $rules . '
-					<div class="description">
-						' . $quote->getQuote() . '
-					</div>
+				<div class="logo"></div>
+				<div class="top" id="DownloadDescription">Retrieving server info...</div>
+				<div class="middle">
+					<div class="bar" id="Bar"></div>
+					<span id="BarInfo" class="info"></span>
+					<span class="right"><span id="Percentage">0</span>%</span>
+				</div>
+				<div class="bottom">
+					Currently playing <span class="bold" id="Gamemode">unknown</span> on the map <span class="bold" id="Map">unknown</span>
+					<div class="absoluteRight"><span id="FilesLoaded">0</span>/<span id="FilesTotal">0</span></div>
 				</div>
 			</div>
-		</header>
-	');
-	$doc->print();
-?>
+		</div>
+	</div>
+');
+
+$doc->print();

@@ -1,37 +1,119 @@
-header
+.body
 {
-	display: table;
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url("../images/loading.png");
+	background-position: center center;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.bloke
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+    left: 0;
+
 	margin: 0;
+	background-color: rgba(47, 49, 54, .8);
 }
-header:before
+
+.container
 {
-	opacity: .9;
+	position: absolute;
+	top: 50%;
+	left: 3rem;
+	right: 3rem	;
+	-webkit-transform: translate(0, -50%);
+	text-align: center;
 }
-header .container
+
+.container .logo
 {
-	padding: 0;
-	display: table-cell;
-	vertical-align: middle;
+    background-image: url("../images/logo.svg");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+	width: 8rem;
+    height: 8rem;
+
+	display: block;
+	margin: 0 auto 4rem;
 }
-header h3
+
+.container .top
 {
-	opacity: .9;
-	margin-top: 1rem;
+	line-height: 3rem;
+	font-size: 1.2rem;
 }
-header h3:first-child
+
+.container .bottom
 {
-	margin: 0;
+	font-size: .8rem;
+	line-height: 2rem;
+	position: relative;
 }
-header .description
+
+.container .middle
 {
-	opacity: .9;
-	margin-bottom: 1rem;
+	position: relative;
+	border-radius: 3px;
+	padding: .8rem;
+	line-height: 1.5rem;
+	font-weight: 600;
+	overflow: hidden;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+	text-align: left;
 }
-header .description:last-child
+
+.container .middle:before
 {
-	margin: 0;
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	background-color: #2f3136;
+}
+
+.container .middle .bar
+{
+	border-radius: inherit;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	z-index: -1;
+	background-color: #33cc66;
+	-webkit-transition: width .2s;
+}
+
+.container .middle .info
+{
+	text-align: left;
+}
+
+.container .bold
+{
+	font-weight: 700;
+}
+
+.container .right
+{
+	float: right;
+}
+
+.container .absoluteRight
+{
+	position: absolute;
+	top: 0;
+	right: 0;
 }

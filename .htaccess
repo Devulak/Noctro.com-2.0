@@ -39,7 +39,7 @@ RewriteRule ^terms$ /terms.php [L]
 RewriteRule ^settings$ /settings.php [L]
 
 # Loading redirect
-RewriteRule ^loading/(.*)$ /loading.php?subject=$1 [L]
+RewriteRule ^loading$ /loading.php [L]
 
 # Error redirect
 ErrorDocument 404 /error.php
