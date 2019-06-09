@@ -10,9 +10,8 @@ class Bottom extends XMLSnip
 	{
 		LinkCollector::addLink('bottom');
 
-		$this->xml = new SimpleXMLElement("<div />");
-		$this->xml->addAttribute("class", "bottom");
-		$image = $this->xml->addChild("img");
-		$image->addAttribute("src", "images/kelvin.svg");
+        $template = new TemplateEngine("../PresentationHTML/HTMLBottom.php");
+
+		$this->xml = new SimpleXMLElement($template->Compiled);
 	}
 }

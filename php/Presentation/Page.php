@@ -15,28 +15,22 @@ class Page
 
 	public function __construct()
 	{
+        $config = Config::GetInit();
+
 		LinkCollector::addLink('init');
 		LinkCollector::addLink('colours');
 		LinkCollector::addScript('ogs');
 
+		$template = new TemplateEngine("../PresentationHTML/HTMLPage.php");
+
+        $template->Assign("Name", $config['name']);
+        $template->Assign("Path", Config::GetPath());
+        $template->Assign("StripePublicKey", Config::GetStripe()["public_key"]);
+        $template->Assign("RecaptchaSiteKey", Config::GetRecaptcha()["site_key"]);
+
 		$this->doc = new DOMDocument();
-		$config = Config::GetInit();
-		$this->doc->loadHTML('
-			<!DOCTYPE html>
-			<html lang="uk">
-				<head>
-					<meta charset="utf-8">
-					<title>' . htmlspecialchars($config['name']) . '</title>
-					<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-					<meta name="description" content="For beauty, for glory and for friends. ' . $config['name'] . ' is a place for people to play together as a community sharing the love of games.">
-					<meta property="og:image" content="' . Config::GetPath() . '/images/logo.svg">
-					<script>var stripePublicKey = "' . Config::GetStripe()["public_key"] . '";</script>
-					<script>var recaptchaSiteKey = "' . Config::GetRecaptcha()["site_key"] . '";</script>
-				</head>
-				<body>
-				</body>
-			</html>
-		');
+        $template->Assign("Body", "");
+		$this->doc->loadHTML($template->Compiled);
 
 		$this->head = $this->doc->documentElement->getElementsByTagName('head')[0];
 

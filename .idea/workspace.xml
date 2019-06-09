@@ -2,18 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d2c809b-40f8-42e2-8439-dcd90b8dc1bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/loading.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/php/Presentation/TemplateEngine.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/php/PresentationHTML/HTMLBottom.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/php/PresentationHTML/HTMLNavigation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/php/PresentationHTML/HTMLPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/loading.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/loading.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/images/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loading.php" beforeDir="false" afterPath="$PROJECT_DIR$/loading.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Presentation/Bottom.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Presentation/Bottom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Presentation/Navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Presentation/Navigation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Presentation/Page.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/Presentation/Page.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -48,31 +58,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loading.php">
+        <entry file="file://$PROJECT_DIR$/php/Presentation/Navigation.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
-                <element signature="e#37#59#0#PHP" expanded="true" />
+                <element signature="e#32#51#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/css/loading.css">
+        <entry file="file://$PROJECT_DIR$/php/Presentation/Page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+            <state relative-caret-position="-84">
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+              <folding>
+                <element signature="e#32#48#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/loading.js">
+        <entry file="file://$PROJECT_DIR$/php/PresentationHTML/HTMLPage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+            <state relative-caret-position="102">
+              <caret line="6" column="170" lean-forward="true" selection-start-line="6" selection-start-column="170" selection-end-line="6" selection-end-column="170" />
             </state>
           </provider>
         </entry>
@@ -89,6 +102,9 @@
       <find>game</find>
       <find>Buffer</find>
       <find>ajax</find>
+      <find>assign</find>
+      <find>Assign</find>
+      <find>$string</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,12 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/linksteam.php" />
-        <option value="$PROJECT_DIR$/css/balancehistory.css" />
-        <option value="$PROJECT_DIR$/css/donatorshop.css" />
-        <option value="$PROJECT_DIR$/terms.php" />
-        <option value="$PROJECT_DIR$/php/SourceQuery/BaseSocket.php" />
-        <option value="$PROJECT_DIR$/php/SourceQuery/Exception/SourceQueryException.php" />
         <option value="$PROJECT_DIR$/php/SourceQuery/Exception/SocketException.php" />
         <option value="$PROJECT_DIR$/php/SourceQuery/Exception/InvalidPacketException.php" />
         <option value="$PROJECT_DIR$/php/SourceQuery/Exception/InvalidArgumentException.php" />
@@ -113,7 +123,6 @@
         <option value="$PROJECT_DIR$/php/SourceQuery/GoldSourceRcon.php" />
         <option value="$PROJECT_DIR$/php/SourceQuery/Buffer.php" />
         <option value="$PROJECT_DIR$/php/domain/MinecraftServer.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/php/domain/SteamLink.php" />
         <option value="$PROJECT_DIR$/php/domain/Link.php" />
         <option value="$PROJECT_DIR$/php/domain/GarrysModServer.php" />
@@ -123,7 +132,6 @@
         <option value="$PROJECT_DIR$/unlinkminecraft.php" />
         <option value="$PROJECT_DIR$/lost.php" />
         <option value="$PROJECT_DIR$/error.php" />
-        <option value="$PROJECT_DIR$/dashboard.php" />
         <option value="$PROJECT_DIR$/php/Presentation/TimeFormat.php" />
         <option value="$PROJECT_DIR$/php/Presentation/Header.php" />
         <option value="$PROJECT_DIR$/php/Presentation/GameLottery.php" />
@@ -141,13 +149,21 @@
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/php/Presentation/DonatorShop.php" />
         <option value="$PROJECT_DIR$/php/Domain/GarrysModServer.php" />
-        <option value="$PROJECT_DIR$/php/Presentation/Navigation.php" />
         <option value="$PROJECT_DIR$/php/Domain/Lottery.php" />
         <option value="$PROJECT_DIR$/spin.php" />
         <option value="$PROJECT_DIR$/js/loading.js" />
-        <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/loading.php" />
         <option value="$PROJECT_DIR$/css/loading.css" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/dashboard.php" />
+        <option value="$PROJECT_DIR$/php/PresentationHTML/HTMLBottom.php" />
+        <option value="$PROJECT_DIR$/php/PresentationHTML/HTMLNavigation.php" />
+        <option value="$PROJECT_DIR$/php/Presentation/Navigation.php" />
+        <option value="$PROJECT_DIR$/php/Presentation/Bottom.php" />
+        <option value="$PROJECT_DIR$/php/Presentation/TemplateEngine.php" />
+        <option value="$PROJECT_DIR$/php/PresentationHTML/HTMLPage.php" />
+        <option value="$PROJECT_DIR$/php/Presentation/Page.php" />
       </list>
     </option>
   </component>
@@ -196,27 +212,63 @@
         <subPane>
           <expand>
             <path>
-              <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Noctro.com-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Noctro.com-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Noctro.com-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Noctro.com-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
               <item name="php" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Noctro.com-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="Presentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="PresentationHTML" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="Presentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Noctro.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="PHP" type="5114b859:PhpExternalLibrariesNodePatcher$PatchedLibraryNode" />
+              <item name="Noctro.com" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="PresentationHTML" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -226,6 +278,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/phep/php.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -276,11 +329,12 @@
       <workItem from="1547264561642" duration="1626000" />
       <workItem from="1547296471371" duration="14159000" />
       <workItem from="1547340353424" duration="467000" />
+      <workItem from="1560118261406" duration="4190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134156000" />
+    <option name="totallyTimeSpent" value="138346000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,10 +347,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62700963" visible="true" weight="0.31236672" />
-      <window_info id="Structure" order="1" sideWeight="0.37299034" side_tool="true" visible="true" weight="0.31236672" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6259378" visible="true" weight="0.31556502" />
+      <window_info id="Structure" order="1" sideWeight="0.37406215" side_tool="true" visible="true" weight="0.31556502" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
@@ -321,91 +374,24 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/php/Presentation/XMLSnip.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/TimeFormat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/Page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#32#48#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/LinkCollector.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/LinkAccount.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#32#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/Header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#32#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/Bottom.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/BalanceHistory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/AccessPoint.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="e#32#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/Persistence/Connection.php">
+    <entry file="file://$PROJECT_DIR$/php/persistence/Connection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Persistence/Accessor.php">
+    <entry file="file://$PROJECT_DIR$/php/persistence/Accessor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Transaction.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Transaction.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/SteamLink.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/SteamLink.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
@@ -415,48 +401,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Shop.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Shop.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Rcon.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Rcon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
           <caret line="68" column="31" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Product.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/NoTokensLeftException.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/NoTokensLeftException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/NotImplementedException.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/NotImplementedException.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/NoGameCodesLeftException.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/NoGameCodesLeftException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/MojangLink.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/MojangLink.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="18" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/MinecraftServer.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/MinecraftServer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
@@ -466,42 +452,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/LightOpenID.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/LightOpenID.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Link.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Link.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/IProfileAccessor.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/IProfileAccessor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/InsufficientFundsException.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/InsufficientFundsException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/IAccessor.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/IAccessor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/GameServer.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/GameServer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="93" selection-start-line="20" selection-start-column="93" selection-end-line="20" selection-end-column="93" />
@@ -509,14 +495,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/phpinfo.php" />
-    <entry file="file://$PROJECT_DIR$/php/Persistence/Config.php">
+    <entry file="file://$PROJECT_DIR$/php/persistence/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Persistence/ProfileAccessor.php">
+    <entry file="file://$PROJECT_DIR$/php/persistence/ProfileAccessor.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
@@ -526,10 +512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Profile.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Profile.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Ajax/Ajax.php">
+    <entry file="file://$PROJECT_DIR$/php/ajax/Ajax.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
@@ -539,21 +525,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Ajax/donate.php">
+    <entry file="file://$PROJECT_DIR$/php/ajax/donate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Ajax/purchase.php">
+    <entry file="file://$PROJECT_DIR$/php/ajax/purchase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Ajax/userLogin.php">
+    <entry file="file://$PROJECT_DIR$/php/ajax/userLogin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -562,7 +548,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Ajax/userRegister.php">
+    <entry file="file://$PROJECT_DIR$/php/ajax/userRegister.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -571,7 +557,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/GameCode.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/GameCode.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
@@ -608,16 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Presentation/Navigation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#32#51#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -628,7 +604,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/GarrysModServer.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/GarrysModServer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="39" column="84" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
@@ -638,7 +614,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/Domain/Lottery.php">
+    <entry file="file://$PROJECT_DIR$/php/domain/Lottery.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
@@ -666,10 +642,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        <state relative-caret-position="425">
+          <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/loading.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -683,10 +673,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/loading.css">
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Presentation/Form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="e#32#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/init.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Presentation/Navigation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#32#51#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Presentation/TemplateEngine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Presentation/Bottom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/PresentationHTML/HTMLBottom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/PresentationHTML/HTMLNavigation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="70" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/PresentationHTML/HTMLPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="170" lean-forward="true" selection-start-line="6" selection-start-column="170" selection-end-line="6" selection-end-column="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/Presentation/Page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <element signature="e#32#48#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

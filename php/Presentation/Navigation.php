@@ -16,36 +16,30 @@ class Navigation extends XMLSnip
 		LinkCollector::addScript("inputStrictNumber");
 		LinkCollector::addScript("payment");
 
+        $template = new TemplateEngine("../PresentationHTML/HTMLNavigation.php");
+
+        $template->Assign("EMAIL", $profile->GetEmail());
+
+        $template->Assign("StripePublicKey", Config::GetStripe()["public_key"]);
+
 		$shop = new Shop(new Accessor(), $profile);
 
-		list($balanceInt, $balanceDecimal) = sscanf($shop->GetBalance() / 100, '%d.%d');
+		list($balanceInt) = sscanf($shop->GetBalance() / 100, '%d.%d');
+
+        $template->Assign("balanceInt", $balanceInt);
 
 		$balanceDecimal = substr(number_format($shop->GetBalance() / 100, 2), -3);
 
-		list($donatedInt, $donatedDecimal) = sscanf($shop->GetDonated() / 100, '%d.%d');
+        $template->Assign("balanceDecimal", $balanceDecimal);
+
+		list($donatedInt) = sscanf($shop->GetDonated() / 100, '%d.%d');
+
+        $template->Assign("donatedInt", $donatedInt);
 
 		$donatedDecimal = substr(number_format($shop->GetDonated() / 100, 2), -3);
 
-		$xml = "
-			<nav>
-				<div class='logo'><img src='images/logo.svg' /></div>
-				<div class='spread'></div>
-				<form class='donate payment' method='post' action='php/Ajax/donate.php'>
-					<div class='valuta'>€</div>
-					<input type='hidden' name='public_key' value='" . Config::GetStripe()["public_key"] . "' />
-					<input type='hidden' name='email' value='" . $profile->getEmail() . "' />
-					<input type='hidden' name='title' value='Donation' />
-					<input type='text' name='amountCustom' class='strictNumber' min='1' max='1337' value='10' />
-					<input type='submit' value='Donate' />
-				</form>
-				<div class='balance'>
-					€ " . number_format($balanceInt) . "<span class='small'>$balanceDecimal</span>
-					<span class='alt small'> / " . number_format($donatedInt) . "<span class='small'>$donatedDecimal</span></span></div>
-				<div class='email'>" . $profile->getEmail() . "</div>
-				<a class='logout end' href='login.php'>Logout</a>
-			</nav>
-		";
+        $template->Assign("donatedDecimal", $donatedDecimal);
 
-		$this->xml = new SimpleXMLElement($xml);
+		$this->xml = new SimpleXMLElement($template->Compiled);
 	}
 }

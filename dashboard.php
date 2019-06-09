@@ -19,7 +19,7 @@ $profile = AccessPoint::GetProfile($pa);
 
 if($profile == null)
 {
-	header("Location: login.php");
+	header("Location: login");
 	die;
 }
 
