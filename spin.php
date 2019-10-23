@@ -13,7 +13,7 @@ $profile = AccessPoint::GetProfile(new ProfileAccessor());
 
 if($profile == null)
 {
-	header("Location: login.php");
+	header("Location: login");
 	die;
 }
 
@@ -21,4 +21,4 @@ $lottery = new Lottery(new Accessor(), $profile);
 
 $lottery->ClaimRandomGameCode();
 
-header("Location: dashboard.php");
+header("Location: dashboard");

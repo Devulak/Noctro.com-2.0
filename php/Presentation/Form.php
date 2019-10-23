@@ -5,8 +5,10 @@ namespace Presentation;
 use Persistence\Config;
 use SimpleXMLElement;
 
-class Form extends XMLSnip
+class Form
 {
+    private $xml;
+
     public function __construct(string $action)
     {
         LinkCollector::addLink('submit');

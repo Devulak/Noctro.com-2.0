@@ -11,8 +11,8 @@ use Persistence\Accessor;
 header('Content-type: text/xml');
 $ajax = new Ajax();
 $input = $_POST ? $_POST : $_GET;
-$amount = $input['amount'];
-$token = $input['token'];
+$amount = isset($input['amount']) ? $input['amount'] : null;
+$token = isset($input['token']) ? $input['token'] : null;
 
 
 $pac = new ProfileAccessor();

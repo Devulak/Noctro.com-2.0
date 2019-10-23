@@ -4,6 +4,7 @@ require_once 'php/init.php';
 
 use Presentation\Page;
 use Presentation\LinkCollector;
+use Presentation\TemplateEngine;
 
 $doc = new Page();
 
@@ -12,25 +13,6 @@ LinkCollector::addScript('loading');
 
 $doc->setTitle('Loading');
 
-$doc->appendXML('
-	<div class="body">
-		<div class="imageshot" />
-		<div class="bloke">
-			<div class="container">
-				<div class="logo"></div>
-				<div class="top" id="DownloadDescription">Retrieving server info...</div>
-				<div class="middle">
-					<div class="bar" id="Bar"></div>
-					<span id="BarInfo" class="info"></span>
-					<span class="right"><span id="Percentage">0</span>%</span>
-				</div>
-				<div class="bottom">
-					Currently playing <span class="bold" id="Gamemode">unknown</span> on the map <span class="bold" id="Map">unknown</span>
-					<div class="absoluteRight"><span id="FilesLoaded">0</span>/<span id="FilesTotal">0</span></div>
-				</div>
-			</div>
-		</div>
-	</div>
-');
+$doc->AppendToBody(new TemplateEngine("Loading.php"));
 
-$doc->print();
+$doc->Display();

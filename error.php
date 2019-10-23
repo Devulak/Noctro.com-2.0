@@ -2,6 +2,7 @@
 
 use Presentation\LinkCollector;
 use Presentation\Page;
+use Presentation\TemplateEngine;
 
 require_once 'php/init.php';
 
@@ -14,17 +15,6 @@ $doc = new Page();
 
 $doc->setTitle('Oh no, something went wrong!');
 
-$doc->appendXML('
-	<canvas id="background" />
-	<script>
-		var dust = Dust(document.getElementById("background"), 1);
-	</script>
-	<h1>Hmm...</h1>
-	<h2>Hmm...</h2>
-	<h3>Hmm...</h3>
-	<h4>Hmm...</h4>
-	<h5>Hmm...</h5>
-	<h6>Whoops</h6>
-');
+$doc->AppendToBody(new TemplateEngine("Error.php"));
 
-$doc->print();
+$doc->Display();

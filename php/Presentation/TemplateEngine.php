@@ -1,24 +1,23 @@
 <?php
 
-
 namespace Presentation;
 
 
-class TemplateEngine
+use Smarty;
+
+class TemplateEngine extends Smarty
 {
-    public $Prefix = "{";
-    public $Suffix = "}";
-    public $Compiled;
+    private $path;
 
-    public function __construct(string $path)
+    public function __construct(string $fileName)
     {
-        $path = __DIR__ . "/" . $path;
+        parent::__construct();
 
-        $this->Compiled = file_get_contents($path);
+        $this->path = __DIR__ . "/../PresentationHTML/" . $fileName;
     }
 
-    public function Assign(string $variable, string $value)
+    public function Compile()
     {
-        $this->Compiled = str_replace($this->Prefix . $variable . $this->Suffix, htmlspecialchars($value), $this->Compiled);
+        return $this->fetch($this->path);
     }
 }

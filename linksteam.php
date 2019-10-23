@@ -11,7 +11,7 @@ $pac = new ProfileAccessor();
 $profile = AccessPoint::GetProfile($pac);
 if($profile == null)
 {
-	header("Location: login.php");
+	header("Location: login");
 	die;
 }
 
@@ -19,5 +19,5 @@ $steamUnique = SteamLink::AttemptSteamInfo();
 if ($steamUnique != null)
 {
 	SteamLink::Create($pac, $profile, $steamUnique);
-	header("Location: dashboard.php");
+	header("Location: dashboard");
 }

@@ -2,16 +2,12 @@
 
 namespace Presentation;
 
-use SimpleXMLElement;
-
-class Bottom extends XMLSnip
+class Bottom extends TemplateEngine
 {
 	function __construct()
 	{
+	    parent::__construct("../PresentationHTML/HTMLBottom.php");
+
 		LinkCollector::addLink('bottom');
-
-        $template = new TemplateEngine("../PresentationHTML/HTMLBottom.php");
-
-		$this->xml = new SimpleXMLElement($template->Compiled);
 	}
 }

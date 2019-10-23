@@ -1,6 +1,6 @@
 <?php
 
-require '../init.php';
+require_once("../init.php");
 
 use Ajax\Ajax;
 use Domain\Profile;
@@ -8,7 +8,7 @@ use Persistence\ProfileAccessor;
 
 header('Content-type: text/xml');
 $ajax = new Ajax();
-$input = $_POST;
+$input = $_POST ? $_POST : $_GET;
 $email = isset($input["email"]) ? $input["email"] : "";
 $password = isset($input["password"]) ? $input["password"] : "";
 $recaptcha = isset($input["grecaptcha"]) ? $input["grecaptcha"] : "";

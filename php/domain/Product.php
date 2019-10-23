@@ -43,14 +43,24 @@ class Product
 		return $this->price;
 	}
 
-	public function GetDiscountPrice(): int
-	{
-		if ($this->newPrice == null)
-		{
-			return $this->price;
-		}
-		return $this->newPrice;
-	}
+    public function GetDiscountPrice(): int
+    {
+        if ($this->newPrice == null)
+        {
+            return $this->price;
+        }
+        return $this->newPrice;
+    }
+
+    public function IsDiscounted(): bool
+    {
+        return $this->GetDefaultPrice() > $this->GetDiscountPrice();
+    }
+
+    public function GetDiscountedPercentage(): int
+    {
+        return round((1 - $this->GetDiscountPrice() / $this->GetDefaultPrice()) * 100);
+    }
 
 	public function GetInfo(): string
 	{

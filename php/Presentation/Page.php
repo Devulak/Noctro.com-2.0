@@ -2,16 +2,12 @@
 
 namespace Presentation;
 
-use DOMDocument;
-use DOMElement;
 use Persistence\Config;
 
 class Page
 {
-	private $doc;
-	private $head;
-	private $body;
-	private $title;
+	private $template;
+    private $bodyParts = array();
 
 	public function __construct()
 	{
@@ -21,62 +17,38 @@ class Page
 		LinkCollector::addLink('colours');
 		LinkCollector::addScript('ogs');
 
-		$template = new TemplateEngine("../PresentationHTML/HTMLPage.php");
+		$this->template = new TemplateEngine("../PresentationHTML/HTMLPage.php");
 
-        $template->Assign("Name", $config['name']);
-        $template->Assign("Path", Config::GetPath());
-        $template->Assign("StripePublicKey", Config::GetStripe()["public_key"]);
-        $template->Assign("RecaptchaSiteKey", Config::GetRecaptcha()["site_key"]);
-
-		$this->doc = new DOMDocument();
-        $template->Assign("Body", "");
-		$this->doc->loadHTML($template->Compiled);
-
-		$this->head = $this->doc->documentElement->getElementsByTagName('head')[0];
-
-		$this->title = $this->doc->documentElement->getElementsByTagName('title')[0];
-
-		$this->body = $this->doc->documentElement->getElementsByTagName('body')[0];
+        $this->template->assign("name", $config['name']);
+        $this->template->assign("path", Config::GetPath());
+        $this->template->assign("stripePublicKey", Config::GetStripe()["public_key"]);
+        $this->template->assign("recaptchaSiteKey", Config::GetRecaptcha()["site_key"]);
 	}
 
 	public function setTitle($subject)
 	{
-		$config = Config::GetInit();
-		$this->title->nodeValue = htmlspecialchars($subject . ' - ' . $config['name']);
+        $this->template->assign("title", $subject);
 	}
 
-	private function appendXMLToElement($xml, DOMElement $element, DOMDocument $document)
-	{
-		$fragment = $document->createDocumentFragment();
-		$fragment->appendXML($xml);
-		$element->appendChild($fragment);
-	}
+    public function AppendToBody(TemplateEngine $appending): void
+    {
+        $this->bodyParts[] = $appending;
+    }
 
-	public function appendXML($xml)
-	{
-		$this->appendXMLToElement($xml, $this->body, $this->doc);
-	}
+    public function Display(): void
+    {
+        $this->template->assign("links", LinkCollector::getLinks());
 
-	public function appendXMLSnip(XMLSnip $snip)
-	{
-		$this->appendXMLToElement($snip->getXML(), $this->body, $this->doc);
-	}
+        $body = "";
+        /** @var TemplateEngine $bodyPart */
+        foreach ($this->bodyParts as $bodyPart)
+        {
+            $body .= $bodyPart->Compile();
+        }
 
-	public function Print(): void
-	{
-		// Clone the DOM so it doesn't mess with the constructed DOM
-		$doc = clone $this->doc;
+        $this->template->assign("body", $body);
+        //$this->template->Assign("body", implode($this->bodyParts));
 
-		// Get cloned head
-		$head = $doc->documentElement->getElementsByTagName('head')[0];
-
-		// Add LinkCollector to the mix
-		$links = LinkCollector::getLinks();
-		foreach ($links as $key => $value)
-		{
-			$this->appendXMLToElement($value, $head, $doc);
-		}
-
-		echo $doc->saveHTML();
-	}
+        echo $this->template->Compile();
+    }
 }

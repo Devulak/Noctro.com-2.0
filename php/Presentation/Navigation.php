@@ -8,38 +8,36 @@ use Persistence\Accessor;
 use Persistence\Config;
 use SimpleXMLElement;
 
-class Navigation extends XMLSnip
+class Navigation extends TemplateEngine
 {
 	public function __construct(Profile $profile)
 	{
+        parent::__construct("../PresentationHTML/HTMLNavigation.php");
+
 		LinkCollector::addLink("navigation");
 		LinkCollector::addScript("inputStrictNumber");
 		LinkCollector::addScript("payment");
 
-        $template = new TemplateEngine("../PresentationHTML/HTMLNavigation.php");
+        $this->assign("email", $profile->GetEmail());
 
-        $template->Assign("EMAIL", $profile->GetEmail());
-
-        $template->Assign("StripePublicKey", Config::GetStripe()["public_key"]);
+        $this->assign("stripePublicKey", Config::GetStripe()["public_key"]);
 
 		$shop = new Shop(new Accessor(), $profile);
 
 		list($balanceInt) = sscanf($shop->GetBalance() / 100, '%d.%d');
 
-        $template->Assign("balanceInt", $balanceInt);
+        $this->assign("balanceInt", $balanceInt);
 
 		$balanceDecimal = substr(number_format($shop->GetBalance() / 100, 2), -3);
 
-        $template->Assign("balanceDecimal", $balanceDecimal);
+        $this->assign("balanceDecimal", $balanceDecimal);
 
 		list($donatedInt) = sscanf($shop->GetDonated() / 100, '%d.%d');
 
-        $template->Assign("donatedInt", $donatedInt);
+        $this->assign("donatedInt", $donatedInt);
 
 		$donatedDecimal = substr(number_format($shop->GetDonated() / 100, 2), -3);
 
-        $template->Assign("donatedDecimal", $donatedDecimal);
-
-		$this->xml = new SimpleXMLElement($template->Compiled);
+        $this->assign("donatedDecimal", $donatedDecimal);
 	}
 }

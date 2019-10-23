@@ -11,7 +11,7 @@ use Persistence\ProfileAccessor;
 header('Content-type: text/xml');
 $ajax = new Ajax();
 $input = $_POST ? $_POST : $_GET;
-$productId = $input['product'];
+$productId = isset($input['product']) ? $input['product'] : 0;
 $token = isset($input['token']) ? $input['token'] : null;
 
 $pac = new ProfileAccessor();

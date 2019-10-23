@@ -7,100 +7,35 @@ use Domain\Profile;
 use Domain\SteamLink;
 use SimpleXMLElement;
 
-class LinkAccount extends XMLSnip
+class LinkAccount extends TemplateEngine
 {
 	private $profile;
 
 	function __construct(Profile $profile)
 	{
+        parent::__construct("../PresentationHTML/HTMLLinkAccount.php");
+
 		$this->profile = $profile;
 
 		LinkCollector::addLink('formstyle');
 		LinkCollector::addLink('blockhandle');
 
-		$this->xml = new SimpleXMLElement("<div />");
-		$this->xml->addAttribute("class", "blocks");
+        $links = $this->profile->GetAllLinks();
 
-		$this->IncludeSteam();
-		$this->IncludeMinecraft();
-		//$this->IncludeDiscord();
-	}
+        $this->assign("steamLink", null);
+        $this->assign("mojangLink", null);
 
-	private function IncludeSteam()
-	{
-		$block = $this->xml->addChild("div");
-		$block->addAttribute("class", "block");
-
-		$header = $block->addChild("h2", "Steam");
-
-		$links = $this->profile->GetAllLinks();
-
-		$steamLink = null;
-		foreach	($links as $link)
-		{
-			if ($link instanceof SteamLink)
-			{
-				$steamLink = $link;
-				break;
-			}
-		}
-
-		if ($steamLink != null)
-		{
-			$description = $block->addChild("p", $steamLink->GetUsername());
-			$link = $block->addChild("a", "Unlink Steam account");
-			$link->addAttribute("href", "unlinksteam.php");
-			$link->addAttribute("class", "buttonstyle");
-		}
-		else
-		{
-			$link = $block->addChild("a", "Link Steam account");
-			$link->addAttribute("href", "linksteam.php");
-			$link->addAttribute("class", "buttonstyle");
-		}
-	}
-
-	private function IncludeMinecraft(): void
-	{
-		$block = $this->xml->addChild("div");
-		$block->addAttribute("class", "block");
-
-		$header = $block->addChild("h2", "Minecraft");
-
-		$links = $this->profile->GetAllLinks();
-
-		$mojangLink = null;
-		foreach	($links as $link)
-		{
-			if ($link instanceof MojangLink)
-			{
-				$mojangLink = $link;
-				break;
-			}
-		}
-
-		if ($mojangLink != null)
-		{
-			$description = $block->addChild("p", $mojangLink->GetUsername());
-			$link = $block->addChild("a", "Unlink Minecraft username");
-			$link->addAttribute("href", "unlinkminecraft.php");
-			$link->addAttribute("class", "buttonstyle");
-		}
-		else
-		{
-			$form = $block->addChild("form");
-			$form->addAttribute("method", "post");
-			$form->addAttribute("action", "linkminecraft.php");
-
-			$username = $form->addChild("input");
-			$username->addAttribute("type", "text");
-			$username->addAttribute("class", "inputstyle");
-			$username->addAttribute("name", "username");
-
-			$submit = $form->addChild("input");
-			$submit->addAttribute("type", "submit");
-			$submit->addAttribute("class", "buttonstyle");
-			$submit->addAttribute("value", "Link Minecraft username");
-		}
+        $steamLink = null;
+        foreach	($links as $link)
+        {
+            if ($link instanceof SteamLink)
+            {
+                $this->assign("steamLink", $link);
+            }
+            if ($link instanceof MojangLink)
+            {
+                $this->assign("mojangLink", $link);
+            }
+        }
 	}
 }

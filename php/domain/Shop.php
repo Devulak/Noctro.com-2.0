@@ -116,26 +116,31 @@ class Shop
 
     public function Donate(int $amount, string $token): void
     {
-    	//TODO: Interface for a Charge()
-		require_once("../stripe/init.php");
-		\Stripe\Stripe::setApiKey(Config::GetStripe()["private_key"]);
-		\Stripe\Charge::create(array(
-			'card' => $token,
-			'amount' => $amount,
-			'currency' => 'EUR',
-			'description' => $this->profile->GetEmail()
-		));
+        //TODO: Interface for a Charge()
+        require_once("../stripe/init.php");
+        \Stripe\Stripe::setApiKey(Config::GetStripe()["private_key"]);
+        \Stripe\Charge::create(array(
+            'card' => $token,
+            'amount' => $amount,
+            'currency' => 'EUR',
+            'description' => $this->profile->GetEmail()
+        ));
 
-		$this->ac->AddBalance($this->profile, $amount, $token);
+        $this->ac->AddBalance($this->profile, $amount, $token);
 
-		// Give announcement to all servers
-		$gameServers = $this->ac->GetAllGameServers();
+        // Give announcement to all servers
+        $gameServers = $this->ac->GetAllGameServers();
 
-		/** @var GameServer $gameServer */
-		foreach	($gameServers as $gameServer)
-		{
-			$formatedAmount = number_format($amount / 100, 2);
-			$gameServer->Announce("just donated", $this->profile, "$formatedAmount EUR");
-		}
+        /** @var GameServer $gameServer */
+        foreach	($gameServers as $gameServer)
+        {
+            $formatedAmount = number_format($amount / 100, 2);
+            $gameServer->Announce("just donated", $this->profile, "$formatedAmount EUR");
+        }
+    }
+
+    public function GetAllProducts(): array
+    {
+        return $this->ac->GetAllProducts();
     }
 }

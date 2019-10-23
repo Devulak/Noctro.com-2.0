@@ -27,3 +27,7 @@ spl_autoload_register(function ($class) {
         require $file;
     }
 });
+
+
+
+include('Smarty/Smarty.class.php');
